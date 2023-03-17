@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import PhoneSignup from "./MyComponents/PhoneSignup";
+import UserDetails from "./MyComponents/UserDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import SuperAdminDashboard from "./MyComponents/SuperAdminDashboard";
+import Home from "./MyComponents/Home";
+import SuperAdminLogin from "./MyComponents/SuperAdminLogin";
+import WorkInProgress from "./MyComponents/WorkInProgress";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <ToastContainer/>
+      <div className="App">
+      
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/signup" element={<PhoneSignup/>}/>
+          <Route path="/userdetails" element={<UserDetails />}/>
+          <Route path="/userpage" element={<UserDetails />}/>
+          <Route path="/login" element={<SuperAdminLogin />}/>
+          <Route path="/workinprogress" element={<WorkInProgress />}/>
+          <Route path="/superadminlogin" element={<SuperAdminDashboard />}/>
+        </Routes>
+        
+      </div>
+    </Router>
   );
 }
 
