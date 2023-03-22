@@ -33,9 +33,6 @@ export default function UserDetails() {
       setError("Enter your name")
     }else if(state.houseno.length==0){
       setError("Enter your house number")
-    }
-    else if(state.number.length==0){
-      setError("Enter your phone number")
     }else if(state.password.length==0){
       setError("Enter your house number")
     }else{
@@ -52,8 +49,8 @@ export default function UserDetails() {
         <input type="text" name="name" onChange={formFieldHandler} placeholder="Enter your name"/>
         <p>House No</p>
         <input type="text" name="houseno" onChange={formFieldHandler} placeholder="Enter your house no"/>
-        <p>Phone No.</p>
-        <input type="text" name="number" onChange={formFieldHandler} placeholder="Enter your phone no"/>
+        <p>Province</p>
+        <input type="text" name="province" onChange={formFieldHandler} placeholder="Enter your province no"/>
         <p>Password</p>
         <div className='password'>
         <input type={eye?"password":"text"} name="password" onChange={formFieldHandler} placeholder="Enter your password"/>
