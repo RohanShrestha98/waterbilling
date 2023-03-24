@@ -14,8 +14,15 @@ import { useContext } from "react";
 import { AuthContext } from "./MyComponents/AuthContext";
 import AddAdmin from "./MyComponents/AddAdmin";
 import { userInputs } from "./FormInput";
-import DataTable from "./MyComponents/DataTable";
+import DataTable from "./MyComponents/DataTableUser";
 import DataList from "./MyComponents/DataList";
+import BillingAdmin from "./MyComponents/BillingAdmin";
+import AdminDashboard from "./MyComponents/AdminDashboard";
+import UserLogin from "./MyComponents/UserLogin";
+import Notification from "./MyComponents/Notification";
+import Coustomer from "./MyComponents/Coustomer";
+import Invoice from "./MyComponents/Invoice";
+import Revenue from "./MyComponents/Revenue";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -29,15 +36,22 @@ function App() {
       <div className="App">
       
         <Routes>
-          <Route path="/" element={<LoginEmail/>}/>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/adminlogin" element={<LoginEmail/>}/>
+          <Route path="/notifications" element={<Notification/>}/>
+          <Route path="/customers" element={<Coustomer/>}/>
+          <Route path="/invoice" element={<Invoice/>}/>
+          <Route path="/revenue" element={<Revenue/>}/>
           <Route path="/data" element={<DataList/>}/>
-          <Route path="/signup" element={<RequiredAuth><PhoneSignup/></RequiredAuth> }/>
-          <Route path="/userdetails" element={<UserDetails />}/>
-          <Route path="/userpage" element={<UserDetails />}/>
-          <Route path="/login" element={<SuperAdminLogin />}/>
+          <Route path="/admindashboard" element={<AdminDashboard/>}/>
+          <Route path="/billingadmin" element={<BillingAdmin/>}/>
+          <Route path="/signup" element={<PhoneSignup/> }/>
+          <Route path="/createuseraccount" element={<UserDetails />}/>
+          <Route path="/userlogin" element={<UserLogin />}/>
+          <Route path="/superadminlogin" element={<SuperAdminLogin />}/>
           <Route path="/addadmin" element={<AddAdmin inputs={userInputs} title="Assign Admin" />}/>
           <Route path="/workinprogress" element={<WorkInProgress />}/>
-          <Route path="/superadminlogin" element={<SuperAdminDashboard />}/>
+          <Route path="/superadmindashboard" element={<SuperAdminDashboard />}/>
         </Routes>
         
       </div>

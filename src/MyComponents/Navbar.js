@@ -14,8 +14,8 @@ const Navbar = () => {
           <li><Link className="link" spy={true} smooth offset={-100} duration={500} onClick={closeMenu}>Home</Link></li>
           <li><Link  className="link"  spy={true} smooth offset={-100} duration={500}onClick={closeMenu} >Services</Link></li>
           <li><Link  className="link"  spy={true} smooth offset={-100} duration={500}onClick={closeMenu} >FAQs</Link></li>
-          <li><Link className="link loginbutton" to="/login" spy={true} smooth offset={-100} duration={500}onClick={closeMenu} ><p>Login</p> </Link></li>
-          <li><Link to="/signup" className="link signbutton"  spy={true} smooth offset={-100} duration={500}onClick={closeMenu} ><p>Signup</p> </Link></li>
+          <li><Link className="link loginbutton" to="/userlogin" spy={true} smooth offset={-100} duration={500}onClick={closeMenu} ><p>Login</p> </Link></li>
+          <li><Link to="/createuseraccount" className="link signbutton"  spy={true} smooth offset={-100} duration={500}onClick={closeMenu} ><p>Signup</p> </Link></li>
         </ul>
         </div>
     </div>

@@ -2,11 +2,11 @@ import React from "react";
 import { useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { toast } from "react-toastify";
 
-export default function LoginEmail() {
+export default function UserLogin() {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ export default function LoginEmail() {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         toast.success("Login Successfull")
-        navitage("/admindashboard");
+        navitage("/workinprogress");
       })
       .catch((error) => {
         setError(true);
@@ -37,7 +37,7 @@ export default function LoginEmail() {
         {" "}
         <img src="img/logo.png" alt="" />
       </div>
-      <h2>Admin Login</h2>
+      <h2>User Login</h2>
       <p>Email.</p>
       <input
         type="email"
@@ -57,6 +57,7 @@ export default function LoginEmail() {
       </div>
       {error && <span>Wrong email or password!</span>}
       <button>Login</button>
+      <Link to="/createuseraccount" className="alreadyhaveacc"><p>Dont have account</p> </Link>
     </form>
   );
 }

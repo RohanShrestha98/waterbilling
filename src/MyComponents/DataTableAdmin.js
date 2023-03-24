@@ -1,5 +1,5 @@
 
-import { userColumns, userRows } from "../DatatableSourse";
+import { userColumns} from "../DatatableSourse";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
@@ -11,8 +11,9 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "./Firebase";
+import "./style.css"
 
-const DataTable = () => {
+const DataTableAdmin = (props) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const DataTable = () => {
 
     // LISTEN (REALTIME)
     const unsub = onSnapshot(
-      collection(db, "users"),
+      collection(db,"users" ),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -59,7 +60,7 @@ const DataTable = () => {
       console.log(err);
     }
   };
-
+  const [conform,setConform]=useState(false);
   const actionColumn = [
     {
       field: "action",
@@ -68,15 +69,20 @@ const DataTable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            
+            <Link to="/adminedit" style={{ textDecoration: "none" }}>
+              <div className="viewButton"><img src="img/edit.png" alt="" /></div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Delete
+              <img src='img/delete.png' alt=""  />
+              
             </div>
+            <Link to="/admindetails" style={{ textDecoration: "none" }}>
+              <div className="viewButton"><img src="img/view.png" alt="" /></div>
+            </Link>
           </div>
         );
       },
@@ -84,12 +90,18 @@ const DataTable = () => {
   ];
   return (
     <div className="datatable" style={{height:"500px"}}>
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
+      {
+        conform && 
+        <div className="conform">
+        <div className="conformImage"></div>
+        <h3>Are you sure you want to delete this admin?</h3>
+        <div className="conformButton">
+          <p>Cancel</p>
+          <p>Delete</p>
+        </div>
       </div>
+      }
+      
       <DataGrid
         className="datagrid"
         rows={data}
@@ -102,4 +114,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default DataTableAdmin;
