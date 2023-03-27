@@ -102,26 +102,33 @@ export default function UserDetails(props) {
 
     setData({ ...data, [id]: value });
   };
-
-  const handleAdd = async (e) => {
+ 
+  const handleAdd =async(e)=>{
     e.preventDefault();
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "normaluser", res.user.uid), {
-        ...data,
-        timeStamp: serverTimestamp(),
-      });
-      toast.success("Signup Successfull")
-      navigate("/workinprogress")
-    } catch (err) {
-      toast.error("Data is already in our system")
-      console.log(err);
-    }
-  };
+    if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
+      toast.error("Incorrect Provience")
+    }else{
+        try {
+          const res = await createUserWithEmailAndPassword(
+            auth,
+            data.email,
+            data.password
+          );
+          await setDoc(doc(db,data.provience=== "1" ? "provienceone" : data.provience=== "2" ? "proviencetwo" :data.provience=== "3"? "proviencethree" : data.provience=== "4" ? "proviencefour" : data.provience=== "5" ?  "proviencefive" : data.provience=== "6" ? "proviencesix" : data.provience=== "7" ? "provienceseven" : toast.error("Incorrect provience"), res.user.uid), {
+            ...data,
+            timeStamp: serverTimestamp(),
+          });
+          
+            toast.success("Signup Successfull")
+            navigate("/workinprogress")
+          
+          
+        } catch (err) {
+          toast.error("Data is already in our system")
+          console.log(err);
+        }
+      };
+  }
 
   return (
     <div>
@@ -187,13 +194,13 @@ export default function UserDetails(props) {
             placeholder="Enter your username"
             onChange={handleInput}
           />
-          {/* <p>House no</p>
+          <p>Provience no</p>
           <input
-            id="houseno"
-            type="text"
-            placeholder="Enter your house number"
+            id="provience"
+            type="number"
+            placeholder="Enter your Provience number"
             onChange={handleInput}
-          /> */}
+          />
         <p>Email Address</p>
           <input
             id="email"
@@ -229,7 +236,7 @@ export default function UserDetails(props) {
             onChange={handleInput}
             onMouseOut={checkPassword}
           />
-        <button type="submit">Continue</button>
+        <button type="submit" >Continue</button>
         <Link to="/userlogin" className="alreadyhaveacc"><p>Already have Account</p> </Link>
       </form>
     </div>
