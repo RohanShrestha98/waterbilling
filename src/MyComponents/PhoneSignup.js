@@ -88,9 +88,9 @@ export default function PhoneSignup() {
       <div className="PhoneNumberLogin">
         <div className="logo"> <img src="img/logo.png" alt="" /></div>
         <div id="recaptcha-container"></div>
-        <h2>Verify Phone Number</h2>
+        <h2>Super Admin Login</h2>
         <p>Phone No.</p>
-        <input type="number" name="mobile" onChange={formFieldHandler} placeholder="Enter your phone no."/>
+        <input type="number" value={state.mobile}  onChange={formFieldHandler} placeholder="Enter your phone no."/>
         {state.verifyOtp ? (
           <>
           <p>OTP</p>

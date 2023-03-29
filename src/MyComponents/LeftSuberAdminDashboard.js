@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function LeftDashboard() {
+export default function LeftSuperAdminDashboard() {
     const general = [
         {
             id:"1",
@@ -36,6 +36,12 @@ export default function LeftDashboard() {
             icon:"img/profile2user.png",
             title:"Customers",
             link:"/customers"
+        },
+        {
+            id:"2",
+            icon:"img/usertag.png",
+            title:"Billing Admin",
+            link:"/billingadmin"
         }
     ]
   return (

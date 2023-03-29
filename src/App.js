@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import PhoneSignup from "./MyComponents/PhoneSignup";
 import UserDetails from "./MyComponents/UserDetails";
@@ -9,8 +9,27 @@ import SuperAdminDashboard from "./MyComponents/SuperAdminDashboard";
 import Home from "./MyComponents/Home";
 import SuperAdminLogin from "./MyComponents/SuperAdminLogin";
 import WorkInProgress from "./MyComponents/WorkInProgress";
+import LoginEmail from "./MyComponents/LoginEmail";
+import { useContext } from "react";
+import { AuthContext } from "./MyComponents/AuthContext";
+import AddAdmin from "./MyComponents/AddAdmin";
+import { userInputs } from "./FormInput";
+import DataTable from "./MyComponents/DataTableUser";
+import DataList from "./MyComponents/DataList";
+import BillingAdmin from "./MyComponents/BillingAdmin";
+import AdminDashboard from "./MyComponents/AdminDashboard";
+import UserLogin from "./MyComponents/UserLogin";
+import Notification from "./MyComponents/Notification";
+import Coustomer from "./MyComponents/Coustomer";
+import Invoice from "./MyComponents/Invoice";
+import Revenue from "./MyComponents/Revenue";
 
 function App() {
+  const {currentUser} = useContext(AuthContext)
+  const RequiredAuth =({childern})=>{
+    return currentUser ? (childern):<Navigate to="/login"/>
+  }
+  console.log(currentUser)
   return (
     <Router>
         <ToastContainer/>
@@ -18,12 +37,21 @@ function App() {
       
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/signup" element={<PhoneSignup/>}/>
-          <Route path="/userdetails" element={<UserDetails />}/>
-          <Route path="/userpage" element={<UserDetails />}/>
-          <Route path="/login" element={<SuperAdminLogin />}/>
+          <Route path="/adminlogin" element={<LoginEmail/>}/>
+          <Route path="/notifications" element={<Notification/>}/>
+          <Route path="/customers" element={<Coustomer/>}/>
+          <Route path="/invoice" element={<Invoice/>}/>
+          <Route path="/revenue" element={<Revenue/>}/>
+          <Route path="/data" element={<DataList/>}/>
+          <Route path="/admindashboard" element={<AdminDashboard/>}/>
+          <Route path="/billingadmin" element={<BillingAdmin/>}/>
+          <Route path="/signup" element={<PhoneSignup/> }/>
+          <Route path="/createuseraccount" element={<UserDetails />}/>
+          <Route path="/userlogin" element={<UserLogin />}/>
+          <Route path="/superadminlogin" element={<SuperAdminLogin />}/>
+          <Route path="/addadmin" element={<AddAdmin inputs={userInputs} title="Assign Admin" />}/>
           <Route path="/workinprogress" element={<WorkInProgress />}/>
-          <Route path="/superadminlogin" element={<SuperAdminDashboard />}/>
+          <Route path="/superadmindashboard" element={<SuperAdminDashboard />}/>
         </Routes>
         
       </div>
