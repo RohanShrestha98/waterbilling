@@ -25,6 +25,7 @@ export default function RightAdminDashboard() {
             percentage :"60",
             prev:"995"
         }
+        
     ]
   return (
     <div className='rightDashboard'>

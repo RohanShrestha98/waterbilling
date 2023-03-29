@@ -648,3 +648,133 @@
     background: #DC362E;
     color: white;
 }
+
+
+/* invoice */
+
+.invoice{
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+}
+.invoice h3{
+    font-style: normal;
+font-weight: 500;
+font-size: 28px;
+line-height: 36px;
+/* identical to box height, or 129% */
+
+
+/* Neutral/900 */
+
+color: #232324;
+}
+.stats{
+    font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 28px;
+/* identical to box height, or 127% */
+
+
+/* Neutral/900 */
+
+color: #232324;
+
+}
+
+.stats{
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+}
+.small{
+    font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+letter-spacing: 0.25px;
+
+/* Neutral/600 */
+
+color: #8C8D92;
+}
+.today{
+    font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+letter-spacing: 0.1px;
+
+/* Neutral/900 */
+
+color: #232324;
+}
+.rs{
+    font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+letter-spacing: 0.1px;
+
+/* Primary/500 */
+
+color: #2E78D5;
+
+}
+.num{
+    font-style: normal;
+font-weight: 500;
+font-size: 45px;
+line-height: 52px;
+/* identical to box height, or 116% */
+
+
+/* Neutral/900 */
+
+color: #232324;
+
+}
+.s{
+    font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+letter-spacing: 0.1px;
+
+/* Warning/600 */
+
+color: #CC9629;
+
+}
+.rs .col {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+  }
+  .Transactions{
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+  }
+  .Transactions{
+    font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+letter-spacing: 0.1px;
+
+/* Primary/500 */
+
+color: #2E78D5;
+  }
