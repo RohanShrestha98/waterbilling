@@ -1,0 +1,19 @@
+.BillReading{
+   position:absolute;
+   width: 538px;
+   height: 552px;
+   left: 543px;
+   top: 300px;
+   align-items: center;
+}
+
+.h2{
+    font: bold;
+    position: absolute;
+    width: 1202px;
+    height: 95px;
+    left: 211px;
+    top: 28px;
+    
+
+}
