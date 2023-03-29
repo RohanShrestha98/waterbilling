@@ -13,6 +13,14 @@
     --white: white;
 }
 
+.img {
+    padding: 10px;
+    background: #F6F9FD;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 .hero {
     position: relative;
     width: 100%;
@@ -36,7 +44,7 @@
 }
 
 .hero p {
-    margin-top: -20px;
+    margin-top: 0px;
     cursor: pointer;
     padding: 14px 20px;
     font-family: 'DM Sans';
@@ -47,6 +55,13 @@
     color: #FAFAFA;
     background: #D58B2E;
     border-radius: 5px;
+    border: 1px solid #D58B2E;
+}
+
+.hero p:hover {
+    transition: 0.3s;
+    background: #FAFAFA;
+    color: #D58B2E;
 }
 
 .hero h3 {
@@ -69,6 +84,11 @@
     margin: 80px auto;
     box-shadow: 0px 0px 10px 0px rgb(174, 172, 172);
     padding: 40px 50px 60px 50px;
+}
+
+.PhoneNumberLogin span {
+    color: red;
+    font-size: 10px;
 }
 
 .PhoneNumberLogin .alreadyhaveacc {
@@ -204,6 +224,9 @@
 
 .navigate:hover {
     transition: 0.3s;
+    background: #F6F9FD;
+}
+.navigateactive{
     background: #F6F9FD;
 }
 
@@ -542,6 +565,7 @@
     line-height: 20px;
     letter-spacing: 0.1px;
     color: #2E78D5;
+    margin: 0px;
 }
 
 .totalRevenuePrice h3 {
@@ -644,7 +668,42 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.conformButton p:last-child{
+
+.conformButton p:last-child {
     background: #DC362E;
     color: white;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    padding: 50px 6%;
+    justify-content: space-between;
+}
+
+footer p {
+    margin: 0px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    letter-spacing: 0.15px;
+
+    /* Neutral/600 */
+
+    color: #8C8D92;
+}
+
+footer img {
+    width: 128px;
+}
+
+.SerFAQ {
+    display: flex;
+}
+
+.SerFAQ p {
+    margin: 0px 10px;
 }

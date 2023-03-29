@@ -7,38 +7,20 @@ export default function LeftSuperAdminDashboard() {
             id:"1",
             icon:"img/Category.png",
             title:"Dashboard",
-            link:"/admindashboard"
-        },
-        {
-            id:"2",
-            icon:"img/notification.png",
-            title:"Notifications",
-            link:"/notifications"
+            link:"/superadmindashboard"
         }
     ]
-    const billmanagement = [
-        {
-            id:"1",
-            icon:"img/Invoice.png",
-            title:"Invoice",
-            link:"/invoice"
-        },
-        {
-            id:"2",
-            icon:"img/notification.png",
-            title:"Revenue",
-            link:"/revenue"
-        }
-    ]
+    // const billmanagement = [
+    //     {
+    //         id:"1",
+    //         icon:"img/Invoice.png",
+    //         title:"Invoice",
+    //         link:"/invoice"
+    //     }
+    // ]
     const usermanagement = [
         {
             id:"1",
-            icon:"img/profile2user.png",
-            title:"Customers",
-            link:"/customers"
-        },
-        {
-            id:"2",
             icon:"img/usertag.png",
             title:"Billing Admin",
             link:"/billingadmin"
@@ -54,7 +36,7 @@ export default function LeftSuperAdminDashboard() {
         {
             general.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className="navigate">
+                    <Link to={items.link} className="navigate navigateactive">
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -62,7 +44,7 @@ export default function LeftSuperAdminDashboard() {
             ))
         }
       </div>
-      <div className='navigations'>
+      {/* <div className='navigations'>
         <p>Bill Managements</p>
         {
             billmanagement.map((items)=>(
@@ -74,7 +56,7 @@ export default function LeftSuperAdminDashboard() {
                 </div>
             ))
         }
-      </div>
+      </div> */}
       <div className='navigations'>
         <p>User Managements</p>
         {

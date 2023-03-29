@@ -10,9 +10,33 @@
  position: sticky;
  top: 0;
  z-index: 100;
+
+}
+.navbar2 {
+  width: 100%;
+ padding: 0px;
+ position: sticky;
+ top: 0;
+ z-index: 100;
  background: var(--primary);
 }
 .insideNavbar {
+  display: flex;
+  width: 100%;
+  padding: 0px 8%;
+  background: white;
+  height: 70px;
+  color: black;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  
+}
+.insideNavbar img{
+  width: 128px;
+}
+.insideNavbar2 {
   display: flex;
   width: 100%;
   padding: 0px 8%;
@@ -46,9 +70,34 @@
   line-height: 24px;
   letter-spacing: 0.15px;
  
-  color: #FAFAFA;
+  color: var(--primary);
 }
 .navbar li:last-child{
+  margin: 0px;
+  margin-left: 10px;
+}
+.navbar2 ul {
+  display: flex;
+  align-items: center;
+}
+
+.navbar2 li {
+  list-style: none;
+  margin: 0px 20px;
+}
+
+.navbar2 li .link {
+  text-decoration: none;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+ 
+  color: #FAFAFA;
+}
+.navbar2 li:last-child{
   margin: 0px;
   margin-left: 10px;
 }
@@ -62,6 +111,17 @@
   transition: 0.3s;
   color:var(--primary);
   background: white;
+}
+.loginbutton2 p{
+  padding: 6px 16px;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.loginbutton2 p:hover{
+  transition: 0.3s;
+  color:white;
+  background: var(--primary);
 }
 .signbutton p{
   padding: 6px 16px;

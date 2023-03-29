@@ -7,8 +7,8 @@ const Navbar = () => {
   const [click, setClick] = useState(false)
   const closeMenu = () => setClick(false)
   return (
-    <div className="navbar">
-      <div className="insideNavbar">
+    <div className="navbar2">
+      <div className="insideNavbar2">
       <img src="assests/logo.png" />
       <ul className={click ? " active" : ""}>
           <li><Link className="link" spy={true} smooth offset={-100} duration={500} onClick={closeMenu}>Home</Link></li>

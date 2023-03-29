@@ -5,6 +5,7 @@ import { auth } from "./Firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { toast } from "react-toastify";
+import SignupNavigation from "./SignupNavigation";
 
 export default function UserLogin() {
   const [error, setError] = useState(false);
@@ -32,6 +33,8 @@ export default function UserLogin() {
   };
   const [eye,setEye]= useState(true)
   return (
+    <>
+    <SignupNavigation/>
     <form className="PhoneNumberLogin" onSubmit={handleLogin}>
       <div className="logo">
         {" "}
@@ -58,6 +61,8 @@ export default function UserLogin() {
       {error && <span>Wrong email or password!</span>}
       <button>Login</button>
       <Link to="/createuseraccount" className="alreadyhaveacc"><p>Dont have account</p> </Link>
+      
     </form>
+    </>
   );
 }

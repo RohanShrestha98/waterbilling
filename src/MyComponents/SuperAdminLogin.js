@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import "./style.css"
 
 export default function SuperAdminLogin() {
@@ -19,7 +20,8 @@ export default function SuperAdminLogin() {
       const handleSubmit = (e) => {
         e.preventDefault();
         if(state.email==="nahorshrestha@gmail.com" && state.password ==="zaq@XSW2"){
-          navigate("/workinprogress")
+          toast.success("Login Successfull")
+          navigate("/superadmindashboard")
         }else{
             setError("Incorrect email or password")
         }
@@ -37,9 +39,9 @@ export default function SuperAdminLogin() {
         <input type={eye?"password":"text"} name="password" onChange={formFieldHandler} placeholder="Enter your password"/>
         <i class="fa-solid fa-eye" onClick={(e)=>setEye((prev)=>!prev)}></i>
         </div>
-        <p className='error'>{error}</p>
+        <span>{error}</span>
               <button onClick={handleSubmit} >Login</button>
-        
+              <Link to="/adminlogin" className="alreadyhaveacc"><p>Admin Login</p> </Link>
       </div>
     </div>
   )

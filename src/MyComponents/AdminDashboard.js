@@ -6,7 +6,7 @@ export default function AdminDashboard() {
   return (
     <section className="SuperAdminDashboard">
           <LeftDashboard />
-          <RightAdminDashboard/>
+          <RightAdminDashboard title={"Admin Dashboard"}/>
         </section>
   )
 }

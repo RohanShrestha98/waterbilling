@@ -89,7 +89,7 @@ const DataTableAdmin = (props) => {
     },
   ];
   return (
-    <div className="datatable" style={{height:"500px"}}>
+    <div className="datatable" style={{height:"500px",overflow:"auto"}}>
       {
         conform && 
         <div className="conform">

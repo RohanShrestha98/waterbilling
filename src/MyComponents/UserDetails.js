@@ -13,6 +13,8 @@ import { auth, db, storage } from "./Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
+import Navbar from "./Navbar"
+import LoginNavigation from "./LoginNavigation";
 
 export default function UserDetails(props) {
   const [state, setState] = React.useState({
@@ -20,7 +22,7 @@ export default function UserDetails(props) {
     houseno: "",
     number: "",
     password: "",
-    conformPassword: "",
+    conformpassword: "",
     verifyButton: true,
   });
   const navigate = useNavigate();
@@ -32,13 +34,6 @@ export default function UserDetails(props) {
     let name = e.target.name;
     let value = e.target.value;
     setState({ ...state, [name]: value });
-  };
-  const checkPassword = () => {
-    if (state.password !== state.conformPassword) {
-      setError("Password doesnot match");
-    } else {
-      setError("");
-    }
   };
   // const handleSubmit = () => {
   //   if (state.name.length == 0) {
@@ -106,8 +101,11 @@ export default function UserDetails(props) {
   const handleAdd =async(e)=>{
     e.preventDefault();
     if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
-      toast.error("Incorrect Provience")
-    }else{
+      setError("Incorrect Provience")
+    }else if (data.password !== data.conformpassword) {
+      setError("Password doesnot match");
+    }
+    else{
         try {
           const res = await createUserWithEmailAndPassword(
             auth,
@@ -129,8 +127,11 @@ export default function UserDetails(props) {
         }
       };
   }
+  
 
   return (
+    <>
+    <LoginNavigation/>
     <div>
       {/* <form onSubmit={handleAdd} className="PhoneNumberLogin">
         <div className="logo">
@@ -182,16 +183,17 @@ export default function UserDetails(props) {
         <p className="error">{error}</p>
         <button type="submit">Submit</button>
       </form> */}
+      
       <form onSubmit={handleAdd} className="PhoneNumberLogin">
       <div className="logo">
           <img src="img/logo.png" alt="" />
         </div>
         <h2>Create an Account</h2>
-        <p>Username</p>
+        <p>Fullname</p>
           <input
             id="username"
             type="text"
-            placeholder="Enter your username"
+            placeholder="Enter your name"
             onChange={handleInput}
           />
           <p>Provience no</p>
@@ -201,6 +203,7 @@ export default function UserDetails(props) {
             placeholder="Enter your Provience number"
             onChange={handleInput}
           />
+          
         <p>Email Address</p>
           <input
             id="email"
@@ -230,15 +233,16 @@ export default function UserDetails(props) {
             Conform Password
           </p>
           <input
-            id="password"
+            id="conformpassword"
             type={eye2 ? "password" : "text"}
             placeholder="Retype your password"
             onChange={handleInput}
-            onMouseOut={checkPassword}
           />
+          <span>{error}</span>
         <button type="submit" >Continue</button>
         <Link to="/userlogin" className="alreadyhaveacc"><p>Already have Account</p> </Link>
       </form>
     </div>
+    </>
   );
 }

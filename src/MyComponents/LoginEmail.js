@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { toast } from "react-toastify";
 
@@ -10,6 +10,7 @@ export default function LoginEmail() {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [provience, setProvience] = useState("");
 
   const navitage = useNavigate();
 
@@ -17,8 +18,11 @@ export default function LoginEmail() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password)
+    if(provience!== "1" &&provience!== "2" && provience!== "3" && provience!== "4" && provience!== "5" && provience!== "6" && provience!== "7" ){
+      setError("Incorrect Provience")
+    }
+    else{
+      signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -27,8 +31,10 @@ export default function LoginEmail() {
         navitage("/admindashboard");
       })
       .catch((error) => {
-        setError(true);
+        setError("Incorrect email or password");
       });
+    }
+   
   };
   const [eye,setEye]= useState(true)
   return (
@@ -55,8 +61,18 @@ export default function LoginEmail() {
         />
         <i class="fa-solid fa-eye" onClick={(e) => setEye((prev) => !prev)}></i>
       </div>
-      {error && <span>Wrong email or password!</span>}
+      <p>Assigned provience no</p>
+          <input
+            type="number"
+            name="privience"
+            placeholder="Enter your provience number"
+            onChange={(e) => setProvience(e.target.value)}
+          />
+
+      <span>{error}</span>
       <button>Login</button>
+      <Link to="/superadminlogin" className="alreadyhaveacc"><p>Super Admin Login</p> </Link>
+      
     </form>
   );
 }

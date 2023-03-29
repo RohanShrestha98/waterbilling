@@ -2,7 +2,7 @@ import React from 'react'
 import DataTable from './DataTableUser'
 import "./style.css"
 
-export default function RightAdminDashboard() {
+export default function RightAdminDashboard(props) {
     const totalrevenue =[
         {
             id:1,
@@ -29,7 +29,7 @@ export default function RightAdminDashboard() {
   return (
     <div className='rightDashboard'>
       <div className='admindashboardtitle'>
-        <h2>Dashboard</h2>
+        <h2>{props.title}</h2>
         <div className='notification_send'>
             <img src="img/notification.png" alt="" />
             <img src="img/send.png" alt="" />
