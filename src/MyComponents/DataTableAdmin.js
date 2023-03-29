@@ -100,6 +100,7 @@ const DataTableAdmin = (props) => {
           <p>Delete</p>
         </div>
       </div>
+      
       }
       
       <DataGrid
