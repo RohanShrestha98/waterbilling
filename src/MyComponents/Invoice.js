@@ -2,6 +2,7 @@ import React from 'react'
 import LeftDashboard from './LeftDashboard'
 import WorkInProgress from './WorkInProgress'
 import DataTable from './DataTableUser'
+import { Link } from 'react-router-dom'
 
 export default function Invoice() {
   return (
@@ -29,6 +30,10 @@ export default function Invoice() {
         <p className='num'>12</p>
         <p className='s'>Pending 5</p>
        </div>
+      </div>
+      <div className='dummyInvoice'>
+       <Link to="/invoicedetails" style={{textDecoration:"none"}}> <p>Dummy Invoice</p>
+       </Link>
       </div>
       <DataTable table={"normaluser"}/>
       </div>

@@ -23,6 +23,8 @@ import Notification from "./MyComponents/Notification";
 import Coustomer from "./MyComponents/Coustomer";
 import Invoice from "./MyComponents/Invoice";
 import Revenue from "./MyComponents/Revenue";
+import DownloadPdf from "./MyComponents/DownloadPdf";
+import InvoiceDetails from "./MyComponents/InvoiceDetails";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -37,6 +39,8 @@ function App() {
       
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/downloadpdf" element={<DownloadPdf/>}/>
+          <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>
           <Route path="/notifications" element={<Notification/>}/>
           <Route path="/customers" element={<Coustomer/>}/>
