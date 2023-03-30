@@ -8,12 +8,6 @@ export default function LeftDashboard() {
             icon:"img/Category.png",
             title:"Dashboard",
             link:"/admindashboard"
-        },
-        {
-            id:"2",
-            icon:"img/notification.png",
-            title:"Notifications",
-            link:"/notifications"
         }
     ]
     const billmanagement = [
@@ -48,7 +42,7 @@ export default function LeftDashboard() {
         {
             general.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className="navigate">
+                    <Link to={items.link} className="navigate navigateactive">
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>

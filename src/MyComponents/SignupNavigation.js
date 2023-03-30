@@ -8,9 +8,9 @@ export default function SignupNavigation() {
       <div className="insideNavbar">
       <img src="img/logo.png" />
       <ul >
-          <li><Link className="link" >Home</Link></li>
-          <li><Link  className="link" >Services</Link></li>
-          <li><Link  className="link" >FAQs</Link></li>
+          <li><Link to="/" className="link" >Home</Link></li>
+          <li><Link to="/" className="link" >Services</Link></li>
+          <li><Link to="/" className="link" >FAQs</Link></li>
           <li><Link className="link " to="/adminlogin" >Admin Login </Link></li>
           <li><Link to="/superadminlogin" className="link ">SuperAdmin Login </Link></li>
         </ul>

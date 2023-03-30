@@ -15,6 +15,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { toast } from "react-toastify";
 
 export default function AddAdmin(props) {
   const [file, setFile] = useState("");
@@ -82,8 +83,10 @@ export default function AddAdmin(props) {
           timeStamp: serverTimestamp(),
         });
         props.setAdd(false);
+        toast.success("Added Successfully")
       } catch (err) {
         console.log(err);
+        toast.error("Data is already in our system")
       }
    
   };

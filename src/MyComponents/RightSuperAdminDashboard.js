@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import DataTable from './DataTableUser'
 import "./style.css"
 
-export default function RightAdminDashboard(props) {
+export default function RightSuperAdminDashboard(props) {
     const totalrevenue =[
         {
             id:1,
@@ -27,6 +27,29 @@ export default function RightAdminDashboard(props) {
             prev:"995"
         }
     ]
+    const [search,setSearch] = useState("7")
+
+    const [searchprovience,setsearchprovience] = useState("provienceone")
+    const handleSearch =(e)=>{
+      e.preventDefault();
+      if(search==="1"){
+        setsearchprovience("provienceone")
+      }else if(search==="2"){
+        setsearchprovience("proviencetwo")
+      }else if(search==="3"){
+        setsearchprovience("proviencethree")
+      }else if(search==="4"){
+        setsearchprovience("proviencefour")
+      }else if(search==="5"){
+        setsearchprovience("proviencefive")
+      }else if(search==="6"){
+        setsearchprovience("proviencesix")
+      }else if(search==="7"){
+        setsearchprovience("provienceseven")
+      }else{
+        toast.error("Provience incorrect")
+      }
+    }
   return (
     <div className='rightDashboard'>
       <div className='admindashboardtitle'>
@@ -63,9 +86,20 @@ export default function RightAdminDashboard(props) {
             ))
         }
         
-      </div> 
-      <DataTable table="normaluser"/> 
+      </div>
+      <div className='provienceSearch'>
+      <input type="number"  id="search" onChange={(e)=>setSearch(e.target.value)} placeholder='Search for provences data'/>
+      </div>
+      <div className='provienceNumber'>
+      <p>User in Provience {search}</p>
+      </div>
+      {
+        !search ?  <div className="datatable" style={{height:"500px"}}></div> :
+     
       
+        search === "1" ? <DataTable table="provienceone"/> : search=== "2" ? <DataTable table="proviencetwo"/>:search=== "3"? <DataTable table="proviencethree"/> : search=== "4" ? <DataTable table="proviencefour"/> : search=== "5" ?  <DataTable table="proviencefive"/> : search=== "6" ? <DataTable table="proviencesix"/> : search=== "7" ? <DataTable table="provienceseven"/> : console.log("Wrong provience")
+      
+    }
      
     </div>
   )
