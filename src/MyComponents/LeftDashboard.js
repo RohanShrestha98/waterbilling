@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function LeftDashboard() {
     const general = [
@@ -16,12 +18,6 @@ export default function LeftDashboard() {
             icon:"img/Invoice.png",
             title:"Invoice",
             link:"/invoice"
-        },
-        {
-            id:"2",
-            icon:"img/notification.png",
-            title:"Revenue",
-            link:"/revenue"
         }
     ]
     const usermanagement = [
@@ -32,8 +28,32 @@ export default function LeftDashboard() {
             link:"/customers"
         }
     ]
+    const[active,setActive]=useState(false)
+    const[active1,setActive1]=useState(false)
+    const[active2,setActive2]=useState(false)
+    const [conform,setConform]=useState(false)
+    const popup =()=>{
+        setConform((prev)=>!prev)
+    }
+    const navigate = useNavigate()
+    const Logout=()=>{
+        toast.success("Logout SuccessFull")
+        navigate("/")
+    }
   return (
     <section className='leftDashboard'>
+         {
+        conform && 
+        <div className="conform">
+        <div className="conformImage"></div>
+        <h3>Are you sure you want to Logout</h3>
+        <div className="conformButton">
+          <p onClick={popup}>Cancel</p>
+          <p onClick={Logout}>Logout</p>
+        </div>
+      </div>
+      
+      }
       <div className='logo'>
         <img src="img/logo.png" alt="" />
       </div>
@@ -42,7 +62,7 @@ export default function LeftDashboard() {
         {
             general.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className="navigate navigateactive">
+                    <Link to={items.link} className={active?"navigate navigateactive":"navigate"} onClick={(e)=>setActive(true)}>
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -55,7 +75,7 @@ export default function LeftDashboard() {
         {
             billmanagement.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className="navigate">
+                    <Link to={items.link} className={active1?"navigate navigateactive":"navigate"} onClick={(e)=>setActive1(true)}>
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -68,7 +88,7 @@ export default function LeftDashboard() {
         {
             usermanagement.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className="navigate">
+                    <Link to={items.link} className={active2?"navigate navigateactive":"navigate"} onClick={(e)=>setActive2(true)}>
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -76,6 +96,10 @@ export default function LeftDashboard() {
             ))
         }
       </div>
+      <h3 onClick={popup} className="navigate logout">
+                    {/* <img src={items.icon} alt="" />   */}
+                    <p>Log Out</p>
+                    </h3>
     </section>
   )
 }

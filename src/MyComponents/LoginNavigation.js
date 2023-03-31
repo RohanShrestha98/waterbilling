@@ -6,7 +6,7 @@ export default function LoginNavigation() {
     <div>
        <div className="navbar">
       <div className="insideNavbar">
-      <img src="assests/logo.png" />
+      <img src="img/logo.png" />
       <ul >
           <li><Link to="/" className="link" >Home</Link></li>
           <li><Link to="/" className="link" >Services</Link></li>

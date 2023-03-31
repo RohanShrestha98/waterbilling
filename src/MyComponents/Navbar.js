@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className="navbar2">
       <div className="insideNavbar2">
-      <img src="assests/logo.png" />
+     <Link to="/"> <img src="assests/logo.png" /></Link>
       <ul className={click ? " active" : ""}>
           <li><Link className="link" spy={true} smooth offset={-100} duration={500} onClick={closeMenu}>Home</Link></li>
           <li><Link  className="link"  spy={true} smooth offset={-100} duration={500}onClick={closeMenu} >Services</Link></li>

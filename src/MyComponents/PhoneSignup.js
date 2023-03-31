@@ -90,7 +90,7 @@ export default function PhoneSignup() {
         <div id="recaptcha-container"></div>
         <h2>Super Admin Login</h2>
         <p>Phone No.</p>
-        <input type="number" value={state.mobile}  onChange={formFieldHandler} placeholder="Enter your phone no."/>
+        <input type="number" name="mobile"   onChange={formFieldHandler} placeholder="Enter your phone no."/>
         {state.verifyOtp ? (
           <>
           <p>OTP</p>
@@ -107,8 +107,6 @@ export default function PhoneSignup() {
             <button onClick={verifyCode}  >Verify Otp</button>
            :
               <button onClick={onSigninSubmit} className={state.verifyButton ? "disable" : "nodisable"} disabled={state.verifyButton} >Send OTP</button>
-             
-            
         }
         
       </div>

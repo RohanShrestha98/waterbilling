@@ -9,6 +9,12 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
+import app from "./Firebase";
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+} from "firebase/auth";
 import { auth, db, storage } from "./Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -24,28 +30,90 @@ export default function UserDetails(props) {
     password: "",
     conformpassword: "",
     verifyButton: true,
+    verifyOtp: false,
+    otp: "",
+    verify: false,
   });
-  const navigate = useNavigate();
   const [eye, setEye] = useState(true);
   const [error, setError] = useState("");
   const [eye2, setEye2] = useState(true);
-  console.log(state.password);
+  const onCaptchaVerify = () => {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {
+          onSigninSubmit();
+        },
+      },
+      auth
+    );
+  };
+
+  const onSigninSubmit = (e) => {
+    e.preventDefault()
+    if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
+      setError("Incorrect Provience")
+    }else if(!data.username){
+      setError("Name Field is required")
+    }else if(!data.password){
+      setError("Password field is required")
+    }else if(!data.phone){
+      setError("Phone field is required")
+    }
+    else if (data.password !== data.conformpassword) {
+      setError("Password doesnot match");
+    }else{
+      onCaptchaVerify();
+      const phoneNumber = "+977 - " + data.phone;
+      const appVerifier = window.recaptchaVerifier;
+      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+        .then((confirmationResult) => {
+          window.confirmationResult = confirmationResult;
+          toast.success("OTP Send");
+          setState((prevState) => ({ ...prevState, verifyOtp: true }));
+        })
+        .catch((error) => {
+          // toast.error("To many request");
+          console.log(error);
+        });
+    }
+   
+  };
+
+  useEffect(() => {
+    if (state.mobile && state.mobile.length === 10) {
+      setState((prevState) => ({ ...prevState, verifyButton: false }));
+    }
+  }, [state.mobile]);
+
+  const verifyCode = (e) => {
+    e.preventDefault()
+    window.confirmationResult
+      .confirm(state.otp)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Verification Done");
+        setState((prevState) => ({ ...prevState, verify: true }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const formFieldHandler = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setState({ ...state, [name]: value });
+  }; 
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(state.verify){
+      navigate("/userdetails")
+    }
   };
-  // const handleSubmit = () => {
-  //   if (state.name.length == 0) {
-  //     setError("Enter your name");
-  //   } else if (state.houseno.length == 0) {
-  //     setError("Enter your house number");
-  //   } else if (state.password.length == 0) {
-  //     setError("Enter your house number");
-  //   } else {
-  //     navigate("/workinprogress");
-  //   }
-  // };
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -102,7 +170,12 @@ export default function UserDetails(props) {
     e.preventDefault();
     if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
       setError("Incorrect Provience")
-    }else if (data.password !== data.conformpassword) {
+    }else if(!data.username){
+      setError("Name Field is required")
+    }else if(!data.password){
+      setError("Password is required")
+    }
+    else if (data.password !== data.conformpassword) {
       setError("Password doesnot match");
     }
     else{
@@ -117,8 +190,8 @@ export default function UserDetails(props) {
             timeStamp: serverTimestamp(),
           });
           
-            toast.success("Signup Successfull")
-            navigate("/workinprogress")
+            toast.success("Data Regester to our System")
+            navigate("/userlogin")
           
           
         } catch (err) {
@@ -133,113 +206,88 @@ export default function UserDetails(props) {
     <>
     <LoginNavigation/>
     <div>
-      {/* <form onSubmit={handleAdd} className="PhoneNumberLogin">
-        <div className="logo">
-          <img src="img/logo.png" alt="" />
-        </div>
-        <h2>Create an Account</h2>
-        <p>Email Address</p>
-        <input
-          type="email"
-          id="name"
-          onChange={handleInput}
-          placeholder="Enter your email address"
-        />
-        <p>Phone No</p>
-        <input
-          type="number"
-          id="phone"
-           onChange={handleInput}
-          placeholder="Enter your phone no"
-        />
-        
-        <p>Password</p>
-        <div className="password">
-          <input
-            type={eye ? "password" : "text"}
-            id="password"
-            onChange={handleInput}
-            placeholder="Enter your password"
-          />
-          <i
-            class="fa-solid fa-eye"
-            onClick={(e) => setEye((prev) => !prev)}
-          ></i>
-        </div>
-        <p>Conform Password</p>
-        <div className="password">
-          <input
-            type={eye2 ? "password" : "text"}
-            id="conformPassword"
-            onChange={handleInput}
-            placeholder="Retype your password"
-            onMouseOut={checkPassword}
-          />
-          <i
-            class="fa-solid fa-eye"
-            onClick={(e) => setEye2((prev) => !prev)}
-          ></i>
-        </div>
-        <p className="error">{error}</p>
-        <button type="submit">Submit</button>
-      </form> */}
-      
-      <form onSubmit={handleAdd} className="PhoneNumberLogin">
+      <form  className="PhoneNumberLogin">
+      <div id="recaptcha-container"></div>
       <div className="logo">
           <img src="img/logo.png" alt="" />
         </div>
-        <h2>Create an Account</h2>
-        <p>Fullname</p>
-          <input
-            id="username"
-            type="text"
-            placeholder="Enter your name"
-            onChange={handleInput}
-          />
-          <p>Provience no</p>
-          <input
-            id="provience"
-            type="number"
-            placeholder="Enter your Provience number"
-            onChange={handleInput}
-          />
-          
-        <p>Email Address</p>
-          <input
-            id="email"
-            type="text"
-            placeholder="Enter your email address"
-            onChange={handleInput}
-          />
-          <p>
-            Phone number
-          </p>
-          <input
-            id="phone"
-            type="number"
-            placeholder="Enter your phone number"
-            onChange={handleInput}
-          />
-          <p>
-            Password
-          </p>
-          <input
-            id="password"
-            type={eye2 ? "password" : "text"}
-            placeholder="Enter your password"
-            onChange={handleInput}
-          />
-           <p>
-            Conform Password
-          </p>
-          <input
-            id="conformpassword"
-            type={eye2 ? "password" : "text"}
-            placeholder="Retype your password"
-            onChange={handleInput}
-          />
-          <span>{error}</span>
-        <button type="submit" >Continue</button>
+        {state.verifyOtp ? <h2>Phone number verification</h2>:
+        <h2>Create an Account</h2>}
+        {
+          state.verifyOtp ?
+          <div className="verifynumber">
+          <Link to={"/createuseraccount" } style={{textDecoration:"none"}}>  <h3><img src="img/back.png" alt="" /> Back</h3></Link>
+            <p>Verify your phone number </p>
+            <h2>We’ve sent a 6-digit verification code to 98XXXXXXXX</h2>
+        <input
+              type="number"
+              name="otp"
+              placeholder="Enter the 6-digits code"
+              onChange={formFieldHandler}
+            />
+            </div> :
+           <>
+            <p>Full Name</p>
+            <input
+              id="username"
+              type="text"
+              placeholder="Enter your name"
+              onChange={handleInput}
+            />
+            <p>Provience no</p>
+            <input
+              id="provience"
+              type="number"
+              placeholder="Enter your Provience number"
+              onChange={handleInput}
+            />
+            
+          <p>Email Address</p>
+            <input
+              id="email"
+              type="text"
+              placeholder="Enter your email address"
+              onChange={handleInput}
+            />
+            <p>
+              Phone number
+            </p>
+            <input
+              id="phone"
+              type="number"
+              placeholder="Enter your phone number"
+              onChange={handleInput}
+            />
+            <p>
+              Password
+            </p>
+            <input
+              id="password"
+              type={eye2 ? "password" : "text"}
+              placeholder="Enter your password"
+              onChange={handleInput}
+            />
+             <p>
+              Conform Password
+            </p>
+            <input
+              id="conformpassword"
+              type={eye2 ? "password" : "text"}
+              placeholder="Retype your password"
+              onChange={handleInput}
+            />
+            <span>{error}</span>
+            </> 
+            
+        }
+       {
+          state.verify?
+          <button onClick={handleAdd}>Submit</button> : state.verifyOtp ?
+            <button onClick={verifyCode}  >Verify Otp</button>
+           :
+              <button onClick={onSigninSubmit}  >Verify Number</button>
+        }
+        
         <Link to="/userlogin" className="alreadyhaveacc"><p>Already have Account</p> </Link>
       </form>
     </div>

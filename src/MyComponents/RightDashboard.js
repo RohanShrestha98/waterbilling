@@ -11,17 +11,20 @@ export default function RightDashboard() {
   return (
     <div className="rightDashboard">
         {
-            add &&
-          <AddAdmin handleAdd={handleAdd} setAdd={setAdd}/>
-        }
-       
-        <div className='dashboardHeading'>
+            add ?
+          <AddAdmin handleAdd={handleAdd} setAdd={setAdd}/> : 
+          <>
+           <div className='dashboardHeading'>
       <h2>Billing Admin</h2>
       <button onClick={handleAdd}><img src="img/profile.png" alt="" /> Add Admin</button>
       </div>
       <div className="listContainer">
         <DataTableAdmin/>
       </div>
+          </>
+        }
+       
+       
     </div>
   )
 }

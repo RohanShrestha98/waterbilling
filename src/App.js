@@ -25,6 +25,7 @@ import Invoice from "./MyComponents/Invoice";
 import Revenue from "./MyComponents/Revenue";
 import DownloadPdf from "./MyComponents/DownloadPdf";
 import InvoiceDetails from "./MyComponents/InvoiceDetails";
+import VerifyOtp from "./MyComponents/VerifyOtp";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -47,6 +48,8 @@ function App() {
           <Route path="/invoice" element={<Invoice/>}/>
           <Route path="/revenue" element={<Revenue/>}/>
           <Route path="/data" element={<DataList/>}/>
+          <Route path="/phonesignup" element={<PhoneSignup/>}/>
+          <Route path="/verifyotp" element={<VerifyOtp/>}/>
           <Route path="/admindashboard" element={<AdminDashboard/>}/>
           <Route path="/billingadmin" element={<BillingAdmin/>}/>
           <Route path="/signup" element={<PhoneSignup/> }/>

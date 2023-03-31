@@ -54,10 +54,10 @@ export default function RightSuperAdminDashboard(props) {
     <div className='rightDashboard'>
       <div className='admindashboardtitle'>
         <h2>{props.title}</h2>
-        <div className='notification_send'>
+        {/* <div className='notification_send'>
             <img src="img/notification.png" alt="" />
             <img src="img/send.png" alt="" />
-        </div>
+        </div> */}
       </div>
       <div className='statistics'>
         <div className='statistics_left'>

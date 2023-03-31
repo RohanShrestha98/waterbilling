@@ -4,6 +4,7 @@ import "./style.css";
 import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import LeftDashboard from "./LeftDashboard";
+import { Link } from "react-router-dom";
 
 export default function InvoiceDetails() {
     const divRef = useRef(null);
@@ -69,6 +70,8 @@ export default function InvoiceDetails() {
     <div className="SuperAdminDashboard">
       <LeftDashboard />
       <div className="rightDashboard">
+      <div className="verifynumber">
+          <Link to={"/invoice" } style={{textDecoration:"none"}}>  <h3><img src="img/back.png" alt="" /> Back</h3></Link></div>
         <div  className="invoiceDetails">
           <h2>Bill Details</h2>
           <div className="detailsname">
