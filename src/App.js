@@ -23,6 +23,7 @@ import Notification from "./MyComponents/Notification";
 import Coustomer from "./MyComponents/Coustomer";
 import Invoice from "./MyComponents/Invoice";
 import Revenue from "./MyComponents/Revenue";
+import BillReading1 from "./MyComponents/BillReading1";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -46,6 +47,7 @@ function App() {
           <Route path="/admindashboard" element={<AdminDashboard/>}/>
           <Route path="/billingadmin" element={<BillingAdmin/>}/>
           <Route path="/signup" element={<PhoneSignup/> }/>
+          <Route path="/billreading" element={<BillReading1/> }/>
           <Route path="/createuseraccount" element={<UserDetails />}/>
           <Route path="/userlogin" element={<UserLogin />}/>
           <Route path="/superadminlogin" element={<SuperAdminLogin />}/>
