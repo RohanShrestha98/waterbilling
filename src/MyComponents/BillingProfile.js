@@ -26,11 +26,14 @@ export default function BillingProfile() {
         <p>Samir Shrestha</p>
         <div>
             <p>Phone Number</p>
+            {/* <p>9823379996</p> */}
             <p>9823379996</p>
         </div>
       </div>
     </div>
         
+        u6ryjj
+        profileiutkutg
         
       
       
