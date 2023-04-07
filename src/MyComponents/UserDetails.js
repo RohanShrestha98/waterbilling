@@ -216,7 +216,7 @@ export default function UserDetails(props) {
         {
           state.verifyOtp ?
           <div className="verifynumber">
-          <Link to={"/createuseraccount" } style={{textDecoration:"none"}}>  <h3><img src="img/back.png" alt="" /> Back</h3></Link>
+          <Link onClick={(e)=> setState((prevState) => ({ ...prevState, verifyOtp: false }))} style={{textDecoration:"none"}}>  <h3><img src="img/back.png" alt="" /> Back</h3></Link>
             <p>Verify your phone number </p>
             <h2>We’ve sent a 6-digit verification code to 98XXXXXXXX</h2>
         <input

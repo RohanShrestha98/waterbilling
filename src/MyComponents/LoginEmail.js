@@ -18,10 +18,6 @@ export default function LoginEmail() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if(provience!== "1" &&provience!== "2" && provience!== "3" && provience!== "4" && provience!== "5" && provience!== "6" && provience!== "7" ){
-      setError("Incorrect Provience")
-    }
-    else{
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -33,8 +29,6 @@ export default function LoginEmail() {
       .catch((error) => {
         setError("Incorrect email or password");
       });
-    }
-   
   };
   const [eye,setEye]= useState(true)
   return (
@@ -61,13 +55,6 @@ export default function LoginEmail() {
         />
         <i class="fa-solid fa-eye" onClick={(e) => setEye((prev) => !prev)}></i>
       </div>
-      <p>Assigned provience no</p>
-          <input
-            type="number"
-            name="privience"
-            placeholder="Enter your provience number"
-            onChange={(e) => setProvience(e.target.value)}
-          />
 
       <span>{error}</span>
       <button>Login</button>

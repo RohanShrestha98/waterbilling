@@ -17,22 +17,6 @@ const DataTableUser = (props) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData();
-
-    // LISTEN (REALTIME)
     const unsub = onSnapshot(
       collection(db,props.table ),
       (snapShot) => {
@@ -78,19 +62,6 @@ const DataTableUser = (props) => {
             <p className="deny">Deny</p>
             </div>
             <p></p>
-            {/* <Link to="/adminedit" style={{ textDecoration: "none" }}>
-              <div className="viewButton"><img src="img/edit.png" alt="" /></div>
-            </Link> */}
-            {/* <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              <img src='img/delete.png' alt="" />
-              
-            </div> */}
-            {/* <Link to="/admindetails" style={{ textDecoration: "none" }}>
-              <div className="viewButton"><img src="img/view.png" alt="" /></div>
-            </Link> */}
           </div>
         );
       },

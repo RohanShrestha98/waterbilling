@@ -6,7 +6,7 @@ export default function VerifyOtp() {
     <div>
          <LoginNavigation/>
       <div className="PhoneNumberLogin">
-        ROhan
+        
       </div>
     </div>
   )

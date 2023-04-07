@@ -6,12 +6,11 @@ export default function LoginNavigation() {
     <div>
        <div className="navbar">
       <div className="insideNavbar">
-      <img src="img/logo.png" />
+     <Link to="/"> <img src="img/logo.png" /></Link>
       <ul >
-          <li><Link to="/" className="link" >Home</Link></li>
-          <li><Link to="/" className="link" >Services</Link></li>
-          <li><Link to="/" className="link" >FAQs</Link></li>
-          
+          <li><Link to="/" className="link" style={{color:"black "}}>Home</Link></li>
+          <li><Link to="/" className="link" style={{color:"black "}}>Services</Link></li>
+          <li><Link to="/" className="link" style={{color:"black "}}>FAQs</Link></li>
         </ul>
         </div>
     </div>
