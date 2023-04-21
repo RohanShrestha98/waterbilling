@@ -26,6 +26,7 @@ import Revenue from "./MyComponents/Revenue";
 import DownloadPdf from "./MyComponents/DownloadPdf";
 import InvoiceDetails from "./MyComponents/InvoiceDetails";
 import VerifyOtp from "./MyComponents/VerifyOtp";
+import Userpage from "./MyComponents/Userpage";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -40,6 +41,7 @@ function App() {
       
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/userpage" element={<Userpage/>}/>
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>
