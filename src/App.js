@@ -27,21 +27,64 @@ import DownloadPdf from "./MyComponents/DownloadPdf";
 import InvoiceDetails from "./MyComponents/InvoiceDetails";
 import VerifyOtp from "./MyComponents/VerifyOtp";
 import Userpage from "./MyComponents/Userpage";
+import Crud from "./MyComponents/Crud";
+import CrudForm from "./MyComponents/CrudForm";
+import { useState, useEffect } from 'react';
+import { auth, db } from "./MyComponents/Firebase";
 
 function App() {
-  const {currentUser} = useContext(AuthContext)
-  const RequiredAuth =({childern})=>{
-    return currentUser ? (childern):<Navigate to="/login"/>
+  const { currentUser } = useContext(AuthContext);
+
+const RequiredAuth = ({ children }) => {
+  return currentUser ? children : <Navigate to="/login" />;
+};
+
+const [user, setUser] = useState(null);
+const [data, setData] = useState({});
+useEffect(() => {
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if (user) {
+      setUser(user);
+    } else {
+      setUser(null);
+    }
+  });
+  return unsubscribe;
+}, []);
+
+// const fetchData = async () => {
+//   if(user){
+//     const querySnapshot = await db.collection('normaluser').doc("1EYim3JRMKanZVAlCBhouCU0Djz2").get();
+//     const details = querySnapshot.data()
+//     setData("Rohan");
+//   }
+  
+// };
+// useEffect(()=>{
+//   if (user) {
+//     setData("Rohan");
+//   }
+// })
+useEffect(() => {
+  if (user) {
+    const fetchData = async () => {
+        const querySnapshot = await db.collection('normaluser').doc("1EYim3JRMKanZVAlCBhouCU0Djz2").get();
+        const details = querySnapshot.data()
+        setData(details);
+    };
+    fetchData();
   }
-  console.log(currentUser)
+}, [user]);
+
+console.log(data);
+console.log(currentUser);
+
   return (
     <Router>
         <ToastContainer/>
       <div className="App">
-      
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/userpage" element={<Userpage/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Userpage data={data} user={user} currentUser={currentUser}/>}/>
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>

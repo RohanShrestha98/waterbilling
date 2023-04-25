@@ -3,6 +3,7 @@ import { userColumns} from "../DatatableSourse";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+
 import {
   collection,
   getDocs,
@@ -81,7 +82,7 @@ const DataTableAdmin = (props) => {
         <h3>Are you sure you want to delete this admin?</h3>
         <div className="conformButton">
           <p>Cancel</p>
-          <p>Delete</p>
+          <p  >Delete</p>
         </div>
       </div>
       

@@ -25,7 +25,7 @@ export default function UserLogin() {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         toast.success("Login Successfull")
-        navitage("/workinprogress");
+        navitage("/");
       })
       .catch((error) => {
         setError(true);

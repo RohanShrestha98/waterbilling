@@ -121,8 +121,6 @@ export default function UserDetails(props) {
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
-
-      console.log(name);
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -183,7 +181,9 @@ export default function UserDetails(props) {
           const res = await createUserWithEmailAndPassword(
             auth,
             data.email,
-            data.password
+            data.password,
+            data.name
+           
           );
           await setDoc(doc(db,data.provience=== "1" ? "provienceone" : data.provience=== "2" ? "proviencetwo" :data.provience=== "3"? "proviencethree" : data.provience=== "4" ? "proviencefour" : data.provience=== "5" ?  "proviencefive" : data.provience=== "6" ? "proviencesix" : data.provience=== "7" ? "provienceseven" : toast.error("Incorrect provience"), res.user.uid), {
             ...data,
@@ -200,7 +200,6 @@ export default function UserDetails(props) {
         }
       };
   }
-  
 
   return (
     <>
