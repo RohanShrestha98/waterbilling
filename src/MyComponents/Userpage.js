@@ -1,5 +1,9 @@
+import { onAuthStateChanged } from 'firebase/auth';
+import { collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { auth, db } from './Firebase';
+import { toast } from 'react-toastify';
 
 export default function Userpage(props) {
   const [count, setCount] = useState(0);
@@ -58,9 +62,77 @@ export default function Userpage(props) {
   }
   // console.log(props.data)
  const userdata = props.data
+
+ const [user2,setUser2] = useState({})
+useEffect(()=>{
+  if(props.user){
+    const userId = props.user.uid;
+    const user2 = props.data.find((u) => u.id === userId);
+    console.log("user2", user2)
+    setUser2(user2)
+  }else{
+    console.log("error")
+  }
+},[props.user])
+const [username,setUsername]=useState("")
+const [id,setId]=useState("")
+const [date,setDate]=useState("")
+
+useEffect(()=>{
+  if (user2 && user2.username) {
+    const { username } = user2;
+    const { id } = user2;
+    const { timeStamp } = user2;
+    setUsername(username)
+    setId(id)
+    console.log("timeStamp",timeStamp)
+    console.log("id",id)
+    const date2 = timeStamp.toDate()
+    const dateString = date2.toLocaleString();
+    const currentDate = new Date();
+    const timeDiff = currentDate.getTime() - date2.getTime();
+    const monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 ));
+    console.log(currentDate)
+    console.log(daysDiff)
+    console.log(monthsDiff)
+    let popup = []
+    if(monthsDiff===1){
+      popup.push("One Month passed");
+    }else if(monthsDiff===2){
+      popup.push("One Month passed");
+      popup.push("Second Month passed");
+    }
+    console.log("popup",popup[0])
+    
+    setDate(dateString)
+    // console.log(username);
+  } else {
+    console.log("username is undefined or null");
+  }
+},[user2])
+const collectionRef = collection(db, 'users');
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  onAuthStateChanged(auth, async () => {
+      try {
+          await updateDoc(doc(collectionRef, id), {
+              houseno: "19 Address",
+              wateruse: "50 liters",
+              lastUpdated: serverTimestamp()
+          })
+          
+          toast.success("Data added successfully")
+      } catch (error) {
+          alert(`Data was now added, ${error.message}`)
+      }
+  }, [])
+}
+
+
   return (
     <div>
-      <h1>Hello, {props.userEmail}</h1>
+      <h1>Hello,</h1>
       <h1>{randomNumber}</h1>
       <h1>{randomNumber2}</h1>
       <h1>{count}</h1>
@@ -77,22 +149,12 @@ export default function Userpage(props) {
       {props.user && (
         <div>
           <p>Welcome, {props.user.email}!</p>
+          <p>Welcome, {username}!</p>
+          <p>Since {date}!</p>
         </div>
           )
       }
-      {/* {props.user ? (
-        <div>
-          <p>Welcome, {props.user.email}!</p>
-          {userdata.map(item => (
-            <div key={item.id}>
-              <p>{item.name}</p>
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Please sign in to view the data.</p>
-      )} */}
+      <button onClick={(e)=>handleSubmit(e)}>Add Fields</button>
     </div>
   );
 }

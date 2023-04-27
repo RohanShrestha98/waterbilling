@@ -182,10 +182,10 @@ export default function UserDetails(props) {
             auth,
             data.email,
             data.password,
-            data.name
+            data.name 
            
           );
-          await setDoc(doc(db,data.provience=== "1" ? "provienceone" : data.provience=== "2" ? "proviencetwo" :data.provience=== "3"? "proviencethree" : data.provience=== "4" ? "proviencefour" : data.provience=== "5" ?  "proviencefive" : data.provience=== "6" ? "proviencesix" : data.provience=== "7" ? "provienceseven" : toast.error("Incorrect provience"), res.user.uid), {
+          await setDoc(doc(db,data.provience=== "1" ? "provienceone" && "user" : data.provience=== "2" ? "proviencetwo"  && "user":data.provience=== "3"? "proviencethree" && "user" : data.provience=== "4" ? "proviencefour" && "user" : data.provience=== "5" ?  "proviencefive" && "user" : data.provience=== "6" ? "proviencesix" && "user" : data.provience=== "7" ? "provienceseven" && "user" : toast.error("Incorrect provience"), res.user.uid), {
             ...data,
             timeStamp: serverTimestamp(),
           });
