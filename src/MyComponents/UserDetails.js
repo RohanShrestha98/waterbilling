@@ -52,9 +52,7 @@ export default function UserDetails(props) {
 
   const onSigninSubmit = (e) => {
     e.preventDefault()
-    if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
-      setError("Incorrect Provience")
-    }else if(!data.username){
+     if(!data.username){
       setError("Name Field is required")
     }else if(!data.password){
       setError("Password field is required")
@@ -166,9 +164,7 @@ export default function UserDetails(props) {
  
   const handleAdd =async(e)=>{
     e.preventDefault();
-    if(data.provience!== "1" && data.provience!== "2" && data.provience!== "3" && data.provience!== "4" && data.provience!== "5" && data.provience!== "6" && data.provience!== "7" ){
-      setError("Incorrect Provience")
-    }else if(!data.username){
+    if(!data.username){
       setError("Name Field is required")
     }else if(!data.password){
       setError("Password is required")
@@ -185,7 +181,7 @@ export default function UserDetails(props) {
             data.name 
            
           );
-          await setDoc(doc(db,data.provience=== "1" ? "provienceone" && "user" : data.provience=== "2" ? "proviencetwo"  && "user":data.provience=== "3"? "proviencethree" && "user" : data.provience=== "4" ? "proviencefour" && "user" : data.provience=== "5" ?  "proviencefive" && "user" : data.provience=== "6" ? "proviencesix" && "user" : data.provience=== "7" ? "provienceseven" && "user" : toast.error("Incorrect provience"), res.user.uid), {
+          await setDoc(doc(db,"user", res.user.uid), {
             ...data,
             timeStamp: serverTimestamp(),
           });
@@ -231,13 +227,6 @@ export default function UserDetails(props) {
               id="username"
               type="text"
               placeholder="Enter your name"
-              onChange={handleInput}
-            />
-            <p>Provience no</p>
-            <input
-              id="provience"
-              type="number"
-              placeholder="Enter your Provience number"
               onChange={handleInput}
             />
             

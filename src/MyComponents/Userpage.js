@@ -58,22 +58,55 @@ export default function Userpage(props) {
   }, []);
   const logout = ()=>{
        localStorage.removeItem("user");
+       localStorage.removeItem("user2");
        window.location.reload();
   }
   // console.log(props.data)
  const userdata = props.data
 
- const [user2,setUser2] = useState({})
-useEffect(()=>{
-  if(props.user){
-    const userId = props.user.uid;
-    const user2 = props.data.find((u) => u.id === userId);
-    console.log("user2", user2)
-    setUser2(user2)
-  }else{
-    console.log("error")
+ const [user2, setUser2] = useState({});
+ 
+
+ 
+ 
+ 
+ // set the user2 state when props.data or props.user change
+ useEffect(() => {
+   if (props.user) {
+     const userId = props.user.uid;
+     const user2 = props.data.find((u) => u.id === userId);
+     console.log("user2", user2);
+     setUser2(user2 || {});
+   } else {
+     console.log("error");
+   }
+ }, [props.data, props.user]);
+
+ // update localStorage whenever the user2 state changes
+ useEffect(() => {
+  console.log("Setting user2 to localStorage:", user2);
+  localStorage.setItem("user2", JSON.stringify(user2));
+}, [user2]);
+
+
+ // retrieve user data from localStorage when the component mounts
+ useEffect(() => {
+  const storedUser = localStorage.getItem("user2");
+
+  if (storedUser) {
+    setUser2(JSON.parse(storedUser ?? "{}"));
   }
-},[props.user])
+}, []);
+ 
+ 
+//  useEffect(() => {
+//    const storedUser = localStorage.getItem("user2");
+//    console.log("Retrieved user2 from localStorage:", storedUser);
+//    if (storedUser) {
+//      setUser2(JSON.parse(storedUser));
+//    }
+//  }, []);
+ 
 const [username,setUsername]=useState("")
 const [id,setId]=useState("")
 const [date,setDate]=useState("")

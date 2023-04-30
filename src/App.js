@@ -39,6 +39,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import Users from "./MyComponents/CoustomerPart/Users";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -150,7 +151,7 @@ const [data, setData] = useState([]);
 
 useEffect(() => {
   const unsub = onSnapshot(
-    collection(db,`users` ),
+    collection(db,`user` ),
     (snapShot) => {
       let list = [];
       snapShot.docs.forEach((doc) => {
@@ -218,7 +219,8 @@ console.log(currentUser);
         <ToastContainer/>
       <div className="App">
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Users user={user} data={data} currentUser={currentUser}/>}/>
+          {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>

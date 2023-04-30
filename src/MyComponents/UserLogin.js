@@ -26,6 +26,7 @@ export default function UserLogin() {
         dispatch({ type: "LOGIN", payload: user });
         toast.success("Login Successfull")
         navitage("/");
+        window.location.reload();
       })
       .catch((error) => {
         setError(true);
