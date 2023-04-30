@@ -40,6 +40,8 @@ import {
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import Users from "./MyComponents/CoustomerPart/Users";
+import Bills from "./MyComponents/CoustomerPart/Bills";
+import Home2 from "./MyComponents/CoustomerPart/Home";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -219,9 +221,10 @@ console.log(currentUser);
         <ToastContainer/>
       <div className="App">
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Users user={user} data={data} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} data={data} currentUser={currentUser}/>}/>
           {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
+          <Route path="/bills" element={<Bills user={user} data={data} currentUser={currentUser}/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>
           <Route path="/notifications" element={<Notification/>}/>

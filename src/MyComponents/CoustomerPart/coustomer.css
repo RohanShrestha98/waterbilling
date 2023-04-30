@@ -91,8 +91,10 @@
     color: var(--textcolor);
 }
 
-.personalinfo{
-    margin-top: 40px;
+.kycformdetails {
+    margin-top: 30px;
+    height: 84%;
+    overflow-y: auto;
 }
 
 .personalinfo h1 {
@@ -101,6 +103,7 @@
     font-size: 16px;
     line-height: 24px;
     margin: 0px;
+    margin-top: 20px;
     letter-spacing: 0.15px;
     color: var(--primary);
 }
@@ -135,6 +138,74 @@
     color: #232324;
 }
 
+.citizenshipImage {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.frontcitizenshipImage {
+    width: 48%;
+}
+
+.frontcitizenshipImage h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: var(--headingtextcolor);
+}
+
+.insidecitizenshipImage {
+    background: rgb(186, 185, 185);
+    width: 100%;
+}
+
+.insidecitizenshipImage img {
+    width: 80%;
+    margin: 0px 10%;
+    object-fit: cover;
+    height: 200px;
+    object-position: top;
+}
+
+.citizenshipImageInput label {
+    width: 100%;
+    text-align: center;
+    background: #DFDFE2;
+    border-radius: 4px;
+    color: #232324;
+    margin-top: 10px;
+    padding: 10px 0px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+}
+
+.citizenshipImageInput label:hover {
+    background: var(--primary);
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.citizenshipSubmit{
+    display: flex;
+    justify-content: end;
+
+}
+.citizenshipSubmit button{
+    margin-top: 30px;
+    color: white;
+    background: var(--primary);
+    padding: 8px 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+
 .users {
     display: flex;
     justify-content: space-between;
@@ -160,6 +231,8 @@
 }
 
 
+
+
 .sidebarnames {
     display: flex;
     align-items: center;
@@ -171,6 +244,12 @@
 }
 
 .sidebarnames:hover {
+    background: #D5E4F7;
+    color: #2E78D5;
+    transition: 0.2s;
+}
+
+.selected{
     background: #D5E4F7;
     color: #2E78D5;
 }
