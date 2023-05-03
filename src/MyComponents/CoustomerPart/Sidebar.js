@@ -30,12 +30,10 @@ export default function Sidebar() {
     },
   ];
 
-  const [selectedItemId, setSelectedItemId] = useState('');
-
-  const handleItemClick = (link) => {
-    navigate(link)
-    window.location.reload();
-  };
+  // const handleItemClick = (link) => {
+  //   navigate(link)
+  //   window.location.reload();
+  // };
 
   const navigate = useNavigate()
 
@@ -59,7 +57,7 @@ export default function Sidebar() {
             <Link
               to={item.link}
               className={`sidebarnames ${location.pathname === item.link ? 'selected' : ''}`}
-              onClick={() => handleItemClick(item.link)}
+             
             >
               <img src={item.icon} alt="" />
               <h3>{item.name}</h3>

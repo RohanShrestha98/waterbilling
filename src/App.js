@@ -42,6 +42,9 @@ import { getAuth } from "firebase/auth";
 import Users from "./MyComponents/CoustomerPart/Users";
 import Bills from "./MyComponents/CoustomerPart/Bills";
 import Home2 from "./MyComponents/CoustomerPart/Home";
+import Analytics from "./MyComponents/CoustomerPart/Analytics";
+import AddPost from "./MyComponents/AddPost";
+import Profile from "./MyComponents/CoustomerPart/Profile";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -53,6 +56,12 @@ const auth1 = getAuth();
 const user1 = auth.currentUser;
 
 const [user, setUser] = useState(null);
+const [user2, setUser2] = useState({});
+const [username, setUsername] = useState("");
+const [citizenshipback, setCitizenshipback] = useState("");
+const [email, setEmail] = useState("");
+const [id, setId] = useState("");
+const [data, setData] = useState([]);
 // const [data, setData] = useState({});
 
 useEffect(() => {
@@ -72,84 +81,52 @@ useEffect(() => {
   return unsubscribe;
 }, []);
 
-// useEffect(()=>{
-//   if (user) {
-//    db.collection('proviencetwo').doc(user.uid).get().then(doc=>{
-//     console.log(doc)
-//     const data = doc.data()
-//     console.log("data",data)
-//    })
-//   } else {
-//     console.log("erroe")
-//   }
-// });
-const [info , setInfo] = useState([]);
 
-const Fetchdata = ()=>{
-  db.collection("proviencetwo").doc(user.id).get().then((docs) => {
-    console.log("docsdocs")
-    const data = doc.data()
-    setInfo(data)
-  })
-}
-console.log(info)
-useEffect(()=>{
-   if (user){
-    Fetchdata()
-   }
-},[]) 
+useEffect(() => {
+  if (user) {
+    const userId = user.uid;
+    const user2 = data.find((u) => u.id === userId);
+    console.log("user2", user2);
+    setUser2(user2 || {});
+  } else {
+    console.log("error");
+  }
+}, [data, user]);
 
-// if (user1 !== null) {
-//   user1.providerData.forEach((profile) => {
-//     console.log("Sign-in provider: " + profile.providerId);
-//     console.log("  Provider-specific UID: " + profile.uid);
-//     console.log("  Name: " + profile.displayName);
-//     console.log("  Email: " + profile.email);
-//     console.log("  Photo URL: " + profile.photoURL);
-//   });
-// }
+console.log("headerusers", user2);
 
+useEffect(() => {
+  if (user2) {
+    const { username } = user2;
+    const { email } = user2;
+    const { id } = user2;
+    const { citizenshipback } = user2;
+    setUsername(username);
+    setCitizenshipback(citizenshipback);
+    setId(id);
+    console.log(username);
+    setEmail(email);
+  } else {
+  }
+}, [user2]);
+// update localStorage whenever the user2 state changes
+useEffect(() => {
+  console.log("Setting user2 to localStorage app:", user2);
+  localStorage.setItem("user2", JSON.stringify(user2));
+}, [user2]);
 
+// retrieve user data from localStorage when the component mounts
+useEffect(() => {
+  const storedUser = localStorage.getItem("user2");
 
-
-// useEffect(() => {
-//   async function fetchData() {
-//     try {
-//       const collectionRef = db.collection('normaluser');
-//       const snapshot = await collectionRef.get();
-//       const data = snapshot.docs.map(doc => doc.data());
-//       console.log("Data:", data);
-//     } catch (error) {
-//       console.error("Error fetching data:", error);
-//     }
-//   }
-
-//   if (user && db) {
-//     console.log("Fetching data...");
-//     fetchData();
-//   } else {
-//     console.log("User is not logged in or db is not defined.");
-//   }
-  
-// }, [user, db]);
+  if (storedUser) {
+    setUser2(JSON.parse(storedUser ?? "{}"));
+  }
+}, []);
 
 
-// useEffect(()=>{
-//   const usersRef =  db.collection('normaluser');
-//     usersRef.doc('1EYim3JRMKanZVAlCBhouCU0Djz2').get()
-//   .then((doc) => {
-//     if (doc.exists) {
-//       console.log('Document data:', doc.data());
-//     } else {
-//       console.log('No such document!');
-//     }
-//   })
-//   .catch((error) => {
-//     console.log('Error getting document:', error);
-//   });
-// },[])
 
-const [data, setData] = useState([]);
+
 
 useEffect(() => {
   const unsub = onSnapshot(
@@ -171,49 +148,14 @@ useEffect(() => {
     unsub();
   };
 }, []);
+const [kycfilled, setkycfilled] = useState(true);
 
+useEffect(()=>{
+  if(user2.citizenshipback){
+    setkycfilled(false)
+  }
+})
 
-
-// filter the data for the user with the matching ID
-
-
-// const fetchData = async () => {
-//   if(user){
-//     const querySnapshot = await db.collection('normaluser').doc("1EYim3JRMKanZVAlCBhouCU0Djz2").get();
-//     const details = querySnapshot.data()
-//     setData("Rohan");
-//   }
-  
-// };
-// useEffect(()=>{
-//   if (user) {
-//     setData("Rohan");
-//   }
-// })
-// useEffect(() => {
-//   if (user) {
-//     const fetchData = async () => {
-//         const querySnapshot = await db.collection('normaluser').doc("1EYim3JRMKanZVAlCBhouCU0Djz2").get();
-//         const details = querySnapshot.data()
-//         setData(details);
-//     };
-//     fetchData();
-//   }
-// }, [user]);
-// useEffect(() => {
-//   if(user){
-//     FirebaseAdmin.auth()
-//       .getUser(user.uid)
-//       .then((userRecord) => {
-//         // See the UserRecord reference doc for the contents of userRecord.
-//         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-//       })
-//       .catch((error) => {
-//         console.log('Error fetching user data:', error);
-//       });
-//   }
-// }, [user]);
-// console.log(data);
 console.log(currentUser);
 
   return (
@@ -221,11 +163,14 @@ console.log(currentUser);
         <ToastContainer/>
       <div className="App">
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} data={data} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} kycfilled={kycfilled} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
-          <Route path="/bills" element={<Bills user={user} data={data} currentUser={currentUser}/>}/>
+          <Route path="/bills" element={<Bills user={user} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} time={user2.timeStamp} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/profile" element={<Profile user={user}  data={data} houseno={user2.houseno} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} id={user2.id} citizenshipback={user2.citizenshipback} phone={user2.phone} citizenshipno={user2.citizenshipno}  currentUser={currentUser}/>}/>
+          <Route path="/analytics" element={<Analytics user={user} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
+          <Route path="/addpost" element={<AddPost/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>
           <Route path="/notifications" element={<Notification/>}/>
           <Route path="/customers" element={<Coustomer/>}/>

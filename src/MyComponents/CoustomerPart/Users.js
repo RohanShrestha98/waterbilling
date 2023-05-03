@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Home2 from "./Home";
+import Kyc from "./Kyc";
 
 export default function Users(props) {
   const [kycform, setKycForm] = useState(false);
@@ -317,6 +318,8 @@ export default function Users(props) {
           </p>
         </div>
       )} */}
+
+      <Kyc/>
      
       <div className="users">
         <Sidebar />
