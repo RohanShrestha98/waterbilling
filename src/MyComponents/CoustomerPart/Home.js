@@ -85,11 +85,7 @@ export default function Home2(props) {
     };
   }, []);
 
-  const [click,setClick]=useState(false)
-  const DisplayTost =()=>{
-    toast.success("Payment Successfull")
-    setClick(true)
-  }
+ 
   return (
     <div className="KycUserNoti">
       <Kyc
@@ -129,40 +125,45 @@ export default function Home2(props) {
                 ))}
               </div>
             </div>
-            <div className="coustomerbill">
-              {props.citizenshipback ? (
-                <div ref={divRef} className="billdetails">
-                  <div className="issueDatesLogo">
-                    <div className="issueLogo">
-                      <img src="img/logo.png" alt="" />
-                      <h3>Save Water, Save Life</h3>
-                    </div>
-                    <div className="issuedate">
-                      <h3>Issued Date</h3>
-                      <h2>Feb 18, 2023</h2>
-                    </div>
-                  </div>
-                  <div className="actualbillDetails">
-                    {billdetails.map((items) => (
-                      <div key={items.id} className="billingLine">
-                        <h1>{items.title}</h1>
-                        <p>{items.details}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="totalAmount">
-                    <h1>Total Cost</h1>
-                    <h2>Rs 590</h2>
-                  </div>
-                  {
-                    click ? <button>Payment Done</button>: <button onClick={DisplayTost}>Pay Now</button>
-                  }
-                  
+            <div  className="coustomerbill">
+        {
+            !props.message ?<div ref={divRef} className="billdetails">
+            <div className="issueDatesLogo">
+                <div className="issueLogo">
+                    <img src="img/logo.png" alt="" />
+                    <h3>Save Water, Save Life</h3>
                 </div>
-              ) : (
-                <div>No bills to show</div>
-              )}
+                <div className="issuedate">
+                    <h3>Issued Date</h3>
+                    <h2>Feb 18, 2023</h2>
+                </div>
             </div>
+            <div className="actualbillDetails">
+                {
+                    billdetails.map((items)=>(
+                        <div key={items.id} className="billingLine">
+                            <h1>{items.title}</h1>
+                            <p>{items.details}</p>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className="totalAmount">
+                <h1>Total Cost</h1>
+                <h2>Rs 590</h2>
+            </div>
+            {
+                    props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
+                  }
+          </div>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No bills to show</p>
+          </div>
+          
+        }
+          
+        {/* <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p> */}
+          </div>
           </div>
         </div>
       </div>

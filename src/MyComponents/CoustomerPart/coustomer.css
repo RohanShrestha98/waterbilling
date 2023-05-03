@@ -375,8 +375,18 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 40px;
+    height: 90vh;
+    overflow-y: auto;
     background: #fafafa;
 }
+
+.message{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+
 
 .previousBill {
     width: 56%;
@@ -558,7 +568,7 @@
 
 .coustomerbill {
     width: 30%;
-    margin: 60px 40px;
+    margin: 70px 40px;
 
     position: fixed;
     top: 0;

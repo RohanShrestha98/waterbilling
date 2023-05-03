@@ -21,11 +21,7 @@ export default function Bills(props) {
       link.click();
     });
   }
-  const [click,setClick]=useState(false)
-  const DisplayTost =()=>{
-    toast.success("Payment Successfull")
-    setClick(true)
-  }
+  
     const billdetails = [
         {
             id:"1",
@@ -71,58 +67,12 @@ export default function Bills(props) {
         {
             id:"1",
             title:"Status:",
-            details:click?"Paid":"Pending"
+            details:props.click?"Paid":"Pending"
         }
     ]
     const [view,setView]=useState('all')
-    const allbills = [
-        {
-            id:"1",
-            name:"Bill 123",
-            date:"May 3, 2023",
-            price:"Rs 220"
-        },
-        {
-            id:"1",
-            name:"Bill 122343",
-            date:"Jan 3, 2023",
-            price:"Rs 240"
-        },
-        {
-            id:"1",
-            name:"Bill 123423",
-            date:"Apr 3, 2023",
-            price:"Rs 190"
-        },
-        {
-            id:"1",
-            name:"Bill 123",
-            date:"May 3, 2023",
-            price:"Rs 220"
-        }
-    ]
-    const [date,setDate]=useState("")
+   
 
-    useEffect(()=>{
-        const date2 = props.time.toDate()
-    const dateString = date2.toLocaleString();
-    const currentDate = new Date();
-    const timeDiff = currentDate.getTime() - date2.getTime();
-    const monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 ));
-    console.log(currentDate)
-    console.log(daysDiff)
-    console.log(monthsDiff)
-    let popup = []
-    if(monthsDiff===1){
-      popup.push("One Month passed");
-    }else if(monthsDiff===2){
-      popup.push("One Month passed");
-      popup.push("Second Month passed");
-    }
-    console.log("popup",popup[0])
-    setDate(dateString)
-    },[])
    
   return (
     <div className="KycUserNoti">
@@ -145,7 +95,7 @@ export default function Bills(props) {
             view==='all' ?
             <div className='totalbills'>
                 {
-                    allbills.map((items)=>(
+                    props.bills.map((items)=>(
                         <div key={items.id} className='alltotalbills'>
                         <div className='billnameDate'>
                             <h2>{items.name}</h2>
@@ -155,14 +105,89 @@ export default function Bills(props) {
                     </div>
                     ))
                 }
+
+                {
+                    props.message && <p className='message'>No bills to show</p>
+                }
                
             </div>
-            :view==='pending'?<p>Pending</p>:view==='overdue'?<p>overdue</p>:<p>Paid</p>
+            :view==='pending'?
+            <>
+                {
+                    props.message ? <p className='message'>No bills to show</p> : <div className='totalbills'>
+                    {
+                        !props.click ? <>
+                        {
+                props.bills.map((items)=>(
+                    <div key={items.id} className='alltotalbills'>
+                    <div className='billnameDate'>
+                        <h2>{items.name}</h2>
+                        <p>{items.date}</p>
+                    </div>
+                    <h1>{items.price}<i class="fa-solid fa-angle-right"></i></h1>
+                </div>
+                ))
+            }
+                        </> :<p className='message'>No Pending bills to show</p>
+                    }
+               
+
+            </div>
+                }
+
+               
+            </>
+            :view==='overdue'?
+            <>
+                {
+                    props.message ? <p className='message'>No bills to show</p> : <div className='totalbills'>
+                    {
+                        !props.click ? <>
+                        {
+                props.bills.map((items)=>(
+                    <div key={items.id} className='alltotalbills'>
+                    <div className='billnameDate'>
+                        <h2>{items.name}</h2>
+                        <p>{items.date}</p>
+                    </div>
+                    <h1>{items.price}<i class="fa-solid fa-angle-right"></i></h1>
+                </div>
+                ))
+            }
+                        </> :<p className='message'>No Overdue bills to show</p>
+                    }
+               
+
+            </div>
+                }
+
+               
+            </>
+            :<div className='totalbills'>
+            {
+                props.bills.map((items)=>(
+                    <div key={items.id} className='alltotalbills'>
+                    <div className='billnameDate'>
+                        <h2>{items.name}</h2>
+                        <p>{items.date}</p>
+                    </div>
+                    <h1>{items.price}<i class="fa-solid fa-angle-right"></i></h1>
+                </div>
+                ))
+            }
+
+            {
+                props.message && <p className='message'>No bills to show</p>
+            }
+           
+        </div>
         }
+       
 
       </div>
     <div  className="coustomerbill">
-          <div ref={divRef} className="billdetails">
+        {
+            !props.message ?<div ref={divRef} className="billdetails">
             <div className="issueDatesLogo">
                 <div className="issueLogo">
                     <img src="img/logo.png" alt="" />
@@ -188,10 +213,16 @@ export default function Bills(props) {
                 <h2>Rs 590</h2>
             </div>
             {
-                    click ? <button>Payment Done</button>: <button onClick={DisplayTost}>Pay Now</button>
+                    props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
                   }
+          </div>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No bills to show</p>
           </div>
-          <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p>
+          
+        }
+          
+        {/* <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p> */}
           </div>
           </div>
   </div>
