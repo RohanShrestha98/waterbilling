@@ -1,6 +1,149 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import "./coustomer.css";
+import {
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { auth, db, storage } from "../Firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { toast } from "react-toastify";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-export default function Kyc() {
+export default function Kyc(props) {
+  const [kycform, setKycForm] = useState(false);
+  const [kycfilled, setkycfilled] = useState(true);
+  const [username, setUsername] = useState("");
+  const [citizenshipback, setCitizenshipback] = useState("");
+  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
+  const [data, setData] = useState({});
+  const [per, setPerc] = useState(null);
+  const [file, setFile] = useState("");
+  const [file2, setFile2] = useState("");
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  
+  useEffect(() => {
+
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setPerc(progress);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setData((prev) => ({ ...prev, img: downloadURL }));
+          });
+        }
+      );
+    };
+    file && uploadFile();
+  }, [file]);
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file2.name;
+      const storageRef = ref(storage, file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file2);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setPerc(progress);
+          console.log("per", per);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setData((prev) => ({ ...prev, img2: downloadURL }));
+          });
+        }
+      );
+    };
+    file2 && uploadFile();
+  }, [file2]);
+
+  const binaryData = [];
+  binaryData.push(file);
+  const binaryData2 = [];
+  binaryData2.push(file2);
+
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setData({ ...data, [id]: value });
+  };
+
+  const collectionRef = collection(db, "user");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    onAuthStateChanged(
+      auth,
+      async () => {
+        try {
+          await updateDoc(doc(collectionRef, props.id), {
+            provience: data.provience,
+            currentaddress: data.address,
+            issuedate: data.issuedate,
+            citizenshipno: data.citizenshipno,
+            citizenshipfront: data.img,
+            citizenshipback: data.img2,
+            houseno: data.houseno,
+            lastUpdated: serverTimestamp(),
+          });
+
+          toast.success("KYC Form has submitted");
+          setkycfilled(false)
+          kycform(false)
+          window.location.reload()
+        } catch (error) {
+          alert(`Data was now added, ${error.message}`);
+        }
+      },
+      []
+    );
+  };
+
+  
   return (
     <div>
        {kycform && (
@@ -15,11 +158,11 @@ export default function Kyc() {
                 <div className="Fields">
                   <div className="informationfields">
                     <h2>Name</h2>
-                    <input type="text" value={`${username}`} />
+                    <input type="text" value={props.username} />
                   </div>
                   <div className="informationfields">
                     <h2>Email Address</h2>
-                    <input type="text" value={`${email}`} />
+                    <input type="text" value={props.email} />
                   </div>
                 </div>
               </div>
@@ -114,7 +257,7 @@ export default function Kyc() {
           </div>
         </div>
       )}
-      {kycfilled && (
+      {props.kycfilled && (
         <div className="kycFormTop">
           <img src="img/speak.png" alt="" />
           <p>

@@ -69,11 +69,15 @@ export default function AddPost(props) {
 
     setData({ ...data, [id]: value });
   };
+  const [countClick,setCountClick] = useState(1) 
+  const handleClick = () =>{
+    setCountClick(countClick + 1)
+  } 
 
   const handleAdd = async (e) => {
     e.preventDefault();
       try {
-        await setDoc(doc(db, "post", res.user.uid), {
+        await setDoc(doc(db,"post",`ok${countClick}`), {
           ...data,
           timeStamp: serverTimestamp(),
         });
@@ -91,58 +95,15 @@ export default function AddPost(props) {
           <img src="img/close.png" alt="" onClick={props.handleAdd} />
         </div>
         <form onSubmit={handleAdd} className="form">
+         
           <div className="input">
             <p>
-              Username<span>*</span>
+              Description<span>*</span>
             </p>
             <input
-              id="username"
+              id="desc"
               type="text"
-              placeholder="Enter username"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input">
-            <p>
-              Phone number<span>*</span>
-            </p>
-            <input
-              id="phone"
-              type="number"
-              placeholder="Enter phone number"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input">
-            <p>
-              Email<span>*</span>
-            </p>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter email"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input">
-            <p>
-              Password<span>*</span>
-            </p>
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="input">
-            <p>
-              Assign Province<span>*</span>
-            </p>
-            <input
-              id="address"
-              type="text"
-              placeholder="Enter assigned provience"
+              placeholder="Description about post"
               onChange={handleInput}
             />
           </div>
@@ -165,7 +126,7 @@ export default function AddPost(props) {
               />
             </div>
           </div>
-          <button type="submit">Add admin</button>
+          <button type="submit" onClick={handleClick}>Add post</button>
         </form>
       </div>
     </div>
