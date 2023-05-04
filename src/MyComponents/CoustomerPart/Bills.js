@@ -8,7 +8,9 @@ import html2canvas from 'html2canvas';
 import Kyc from './Kyc';
 import { toast } from 'react-toastify';
 
-export default function Bills(props) {
+export default function Bills(props,{bills}) {
+    const [view,setView]=useState('all')
+    const [currentbills,setCurrentBills]=useState('one')
   const divRef = useRef(null);
 
   function downloadDivContent() {
@@ -70,10 +72,20 @@ export default function Bills(props) {
             details:props.click?"Paid":"Pending"
         }
     ]
-    const [view,setView]=useState('all')
-   
 
-   
+    console.log("bills",props.bills)
+    const [filteredBills,setFilteredills]=useState([])
+useEffect(()=>{
+    if(props.bills){
+        const filteredBills = props.bills.filter(items => items.link === currentbills);
+        setFilteredills(filteredBills)
+    }
+  
+},[props.bills,currentbills])
+
+
+
+
   return (
     <div className="KycUserNoti">
       <Kyc username={props.username} email={props.email} kycfilled={props.kycfilled} citizenshipback={props.citizenshipback}/>
@@ -96,7 +108,7 @@ export default function Bills(props) {
             <div className='totalbills'>
                 {
                     props.bills.map((items)=>(
-                        <div key={items.id} className='alltotalbills'>
+                        <div key={items.id} onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
                         <div className='billnameDate'>
                             <h2>{items.name}</h2>
                             <p>{items.date}</p>
@@ -118,8 +130,10 @@ export default function Bills(props) {
                     {
                         !props.click ? <>
                         {
-                props.bills.map((items)=>(
-                    <div key={items.id} className='alltotalbills'>
+                            
+                props.bills.slice(0, 1).map((items)=>
+                (
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>
@@ -145,7 +159,7 @@ export default function Bills(props) {
                         !props.click ? <>
                         {
                 props.bills.map((items)=>(
-                    <div key={items.id} className='alltotalbills'>
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>
@@ -166,7 +180,7 @@ export default function Bills(props) {
             :<div className='totalbills'>
             {
                 props.bills.map((items)=>(
-                    <div key={items.id} className='alltotalbills'>
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>
@@ -185,9 +199,19 @@ export default function Bills(props) {
        
 
       </div>
-    <div  className="coustomerbill">
+       <div  className="coustomerbill">
         {
-            !props.message ?<div ref={divRef} className="billdetails">
+             !props.kycfilled ? <>
+{
+            !props.message ?
+            <>
+             {
+                filteredBills.map((items)=>(
+            <div  className="billdetails">
+                {/* <button onClick={downloadDivContent}>download Bill</button> */}
+                <div ref={divRef} >
+
+               
             <div className="issueDatesLogo">
                 <div className="issueLogo">
                     <img src="img/logo.png" alt="" />
@@ -195,35 +219,60 @@ export default function Bills(props) {
                 </div>
                 <div className="issuedate">
                     <h3>Issued Date</h3>
-                    <h2>Feb 18, 2023</h2>
+                    <h2>{items.date}</h2>
                 </div>
             </div>
             <div className="actualbillDetails">
-                {
-                    billdetails.map((items)=>(
-                        <div key={items.id} className="billingLine">
+              
+                    <div key={items.id} className="billingLine billingLine1">
                             <h1>{items.title}</h1>
                             <p>{items.details}</p>
+                            <h1>{items.title2}</h1>
+                            <p>{items.details2}</p>
+                            <h1>{items.title3}</h1>
+                            <p>{items.details3}</p>
+                            <h1>{items.title4}</h1>
+                            <p>{items.details4}</p>
+                            <h1>{items.title5}</h1>
+                            <p>{items.details5}</p>
+                            <h1>{items.title6}</h1>
+                            <p>{items.details6}</p>
+                            <h1>{items.title7}</h1>
+                            <p>{items.details7}</p>
+                            <h1>{items.title8}</h1>
+                            <p>{items.details8}</p>
+                            <h1>{items.title9}</h1>
+                            <p>{props.click?"Paid":"Pending"}</p>
                         </div>
-                    ))
-                }
             </div>
             <div className="totalAmount">
                 <h1>Total Cost</h1>
-                <h2>Rs 590</h2>
+                <h2>{items.details6}</h2>
+            </div>
             </div>
             {
-                    props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
+             props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
                   }
-          </div>:
+          </div>
+          ))
+
+        }
+          </>:
           <div className='billdetails nobilldetails'>
              <p className='message'>No bills to show</p>
           </div>
           
         }
+             </>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No bills to show</p>
+          </div>
+        }
+        
           
         {/* <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p> */}
           </div>
+    
           </div>
   </div>
   </div>

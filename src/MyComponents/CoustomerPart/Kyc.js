@@ -153,7 +153,7 @@ export default function Kyc(props) {
             <h1>KYC Form</h1>
             <p>Please fill in all the details.</p>
             <div className="kycformdetails">
-              <div className="personalinfo">
+              <div className="personalinfo1">
                 <h1>Personal Information</h1>
                 <div className="Fields">
                   <div className="informationfields">
@@ -166,7 +166,7 @@ export default function Kyc(props) {
                   </div>
                 </div>
               </div>
-              <div className="personalinfo">
+              <div className="personalinfo1">
                 <h1>Address</h1>
                 <div className="Fields">
                   <div className="informationfields">
@@ -183,7 +183,7 @@ export default function Kyc(props) {
                   </div>
                 </div>
               </div>
-              <div className="personalinfo">
+              <div className="personalinfo1">
                 <h1>Documents</h1>
                 <div className="Fields">
                   <div className="informationfields">

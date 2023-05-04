@@ -97,7 +97,7 @@
     overflow-y: auto;
 }
 
-.personalinfo h1 {
+.personalinfo1 h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -567,10 +567,8 @@
 }
 
 .coustomerbill {
-    width: 30%;
-    margin: 70px 40px;
-
-    position: fixed;
+    width: 40%;
+    position: sticky;
     top: 0;
     right: 0;
 }

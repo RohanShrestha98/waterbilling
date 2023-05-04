@@ -126,6 +126,11 @@ export default function Home2(props) {
               </div>
             </div>
             <div  className="coustomerbill">
+              {
+                !props.kycfilled ?
+             
+              <>
+             
         {
             !props.message ?<div ref={divRef} className="billdetails">
             <div className="issueDatesLogo">
@@ -156,12 +161,18 @@ export default function Home2(props) {
                     props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
                   }
           </div>:
-          <div className='billdetails nobilldetails'>
-             <p className='message'>No bills to show</p>
-          </div>
+         <div className='billdetails nobilldetails'>
+         <p className='message'>No bills to show</p>
+      </div>
+          
           
         }
-          
+         
+         </>:
+         <div className='billdetails nobilldetails'>
+         <p className='message'>No bills to show</p>
+      </div>
+          }
         {/* <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p> */}
           </div>
           </div>

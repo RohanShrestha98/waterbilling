@@ -7,6 +7,8 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
+  getDocs,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
@@ -69,7 +71,17 @@ export default function AddPost(props) {
 
     setData({ ...data, [id]: value });
   };
-  const [countClick,setCountClick] = useState(1) 
+
+  const [length, setLength] = useState(null);
+
+  useEffect(() => {
+    async function getCollectionLength() {
+      const querySnapshot = await getDocs(collection(db, "post"));
+      setLength(querySnapshot.size);
+    }
+    getCollectionLength();
+  }, []);
+  const [countClick,setCountClick] = useState(length) 
   const handleClick = () =>{
     setCountClick(countClick + 1)
   } 
@@ -85,8 +97,9 @@ export default function AddPost(props) {
       } catch (err) {
         console.log(err);
       }
-   
   };
+ 
+
   return (
     <div className="displayAddAdmin">
       <div className="addAdmin">

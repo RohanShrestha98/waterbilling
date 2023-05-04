@@ -62,6 +62,7 @@ const [citizenshipback, setCitizenshipback] = useState("");
 const [email, setEmail] = useState("");
 const [id, setId] = useState("");
 const [data, setData] = useState([]);
+const [click,setClick]=useState(false)
 // const [data, setData] = useState({});
 
 useEffect(() => {
@@ -158,64 +159,248 @@ useEffect(()=>{
 
 console.log(currentUser);
 
+
+const DisplayTost =()=>{
+  toast.success("Payment Successfull")
+  setClick(true)
+}
+
+
 const allbills = [
   {
       id:"1",
       name:"Bill 123",
       date:"May 3, 2023",
-      price:"Rs 220"
+      link:"one",
+      price:"Rs 220",
+      title:"Billing ID:",
+      details:"78672304",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"300 liters",
+      title6:"Water Cost:",
+      details6:"Rs 220",
+      title7:"Due Date:",
+      details7:"May 10, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
+  },
+  {
+      id:"2",
+      name:"Bill 122343",
+      date:"Jan 3, 2023",
+      link:"two",
+      price:"Rs 240",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"Jan 10, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
+  },
+  {
+      id:"1",
+      name:"Bill 12323",
+      link:"three",
+      date:"Apr 3, 2023",
+      price:"Rs 190",
+      title:"Billing ID:",
+      details:"78672306",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 190",
+      title7:"Due Date:",
+      details7:"Apr 10, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
+  },
+  {
+      id:"1",
+      name:"Bill 123",
+      link:"four",
+      date:"May 3, 2023",
+      price:"Rs 220",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
+  },
+  {
+      id:"1",
+      name:"Bill 123",
+      date:"May 3, 2023",
+      link:"five",
+      price:"Rs 220",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
   },
   {
       id:"1",
       name:"Bill 122343",
+      link:"six",
       date:"Jan 3, 2023",
-      price:"Rs 240"
+      price:"Rs 240",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
   },
   {
       id:"1",
       name:"Bill 123423",
       date:"Apr 3, 2023",
-      price:"Rs 190"
+      link:"seven",
+      price:"Rs 190",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
   },
   {
       id:"1",
       name:"Bill 123",
       date:"May 3, 2023",
-      price:"Rs 220"
+      link:"eight",
+      price:"Rs 220",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
   },
   {
       id:"1",
       name:"Bill 123",
       date:"May 3, 2023",
-      price:"Rs 220"
-  },
-  {
-      id:"1",
-      name:"Bill 122343",
-      date:"Jan 3, 2023",
-      price:"Rs 240"
-  },
-  {
-      id:"1",
-      name:"Bill 123423",
-      date:"Apr 3, 2023",
-      price:"Rs 190"
-  },
-  {
-      id:"1",
-      name:"Bill 123",
-      date:"May 3, 2023",
-      price:"Rs 220"
-  },
-  {
-      id:"1",
-      name:"Bill 123",
-      date:"May 3, 2023",
-      price:"Rs 220"
+      link:"nine",
+      price:"Rs 220",
+      title:"Billing ID:",
+      details:"78672305",
+      title2:"Coustomer Name:",
+      details2:user2.username,
+      title3:"Billing Address:",
+      details3:user2.currentaddress,
+      title4:"Provience No:",
+      details4:`Provience No ${user2.provience}`,
+      title5:"Water Usage:",
+      details5:"310 liters",
+      title6:"Water Cost:",
+      details6:"Rs 240",
+      title7:"Due Date:",
+      details7:"29th Feb, 2023",
+      title8:"Additional Charges:",
+      details8:"Rs 0",
+      title9:"Status:",
+      
   }
 ]
 const [bills,setBills]=useState([])
 const [message,setMessage]=useState(false)
+
+const notifications = [
+  {
+
+  }
+]
 
 useEffect(()=>{
   if(user2 && user2.lastUpdated){
@@ -285,11 +470,7 @@ else{
 },[user2,user2.lastUpdated])
 
 
-const [click,setClick]=useState(false)
-  const DisplayTost =()=>{
-    toast.success("Payment Successfull")
-    setClick(true)
-  }
+
 
   return (
     <Router>
