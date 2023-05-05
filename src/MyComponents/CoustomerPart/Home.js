@@ -105,7 +105,7 @@ export default function Home2(props) {
           />
           <div className="allbills">
             <div className="PostsShow">
-              <div>
+              <div className="allposts">
                 {data.map((items) => (
                   <div className="singlePost">
                     <div className="profilename">
@@ -118,7 +118,7 @@ export default function Home2(props) {
                       </div>
                     </div>
                     <p className="description">{items.desc}</p>
-                    <img src={items.img} alt="" />
+                    <img className="postimage" src={items.img} alt="" />
                   </div>
                 ))}
               </div>

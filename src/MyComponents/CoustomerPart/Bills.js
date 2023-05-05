@@ -104,7 +104,89 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
     <Header name={"Bills"} user={props.user} data={props.data} username={props.username} email={props.email}/>
     <div className='allbills'>
       <div className='previousBill'>
-        <h1>My Bills</h1>
+        <h1 className='mybillsh1'>My Bills</h1>
+        <div>Rohan Shrestha {currentbills}</div>
+        <div  className="coustomerbill2 coustomerbill3">
+        {
+             !props.kycfilled ? <>
+{
+            !props.message ?
+            <>
+             {
+                filteredBills.map((items)=>(
+            <div  className="billdetails2">
+                <div className='download' onClick={()=>setDownload(true)}>
+                    <div className='dot'></div>
+                    <div className='dot'></div>
+                    <div className='dot'></div>
+                </div>
+                {
+                    download && <h4 className='downloadbutton' onClick={downloadDivContent}>Download Bill</h4>
+                }
+                
+                <div ref={divRef} className='billdetails1'>
+
+               
+            <div className="issueDatesLogo">
+                <div className="issueLogo">
+                    <img src="img/logo.png" alt="" />
+                    <h3>Save Water, Save Life</h3>
+                </div>
+                <div className="issuedate">
+                    <h3>Issued Date</h3>
+                    <h2>{items.date}</h2>
+                </div>
+            </div>
+            <div className="actualbillDetails">
+              
+                    <div key={items.id} className="billingLine billingLine1">
+                            <h1>{items.title}</h1>
+                            <p>{items.details}</p>
+                            <h1>{items.title2}</h1>
+                            <p>{items.details2}</p>
+                            <h1>{items.title3}</h1>
+                            <p>{items.details3}</p>
+                            <h1>{items.title4}</h1>
+                            <p>{items.details4}</p>
+                            <h1>{items.title5}</h1>
+                            <p>{items.details5}</p>
+                            <h1>{items.title6}</h1>
+                            <p>{items.details6}</p>
+                            <h1>{items.title7}</h1>
+                            <p>{items.details7}</p>
+                            <h1>{items.title8}</h1>
+                            <p>{items.details8}</p>
+                            <h1>{items.title9}</h1>
+                            <p>{props.click?"Paid":"Pending"}</p>
+                        </div>
+            </div>
+            <div className="totalAmount">
+                <h1>Total Cost</h1>
+                <h2>{items.details6}</h2>
+            </div>
+            </div>
+            {
+             props.click ? <button>Payment Done</button>: <button onClick={props.DisplayTost}>Pay Now</button>
+                  }
+          </div>
+          ))
+
+        }
+          </>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No bills to show</p>
+          </div>
+          
+        }
+             </>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No bills to show</p>
+          </div>
+        }
+        
+          
+        {/* <p className="downloadbutton" onClick={downloadDivContent}>Download PNG</p> */}
+          </div>
         <div className='billstitle'>
         <div  onClick={()=>setView('all')}><p className={view==='all'?"billstitlehover":"billstitlehoverp"} >All</p></div>
         
@@ -112,6 +194,7 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
         {/* <p className={view==='overdue'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('overdue')}>Overdue</p> */}
         <p className={view==='paid'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('paid')}>Paid</p>
         </div>
+        
         {
             view==='all' ?
             <div className='totalbills'>

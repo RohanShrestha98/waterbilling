@@ -279,7 +279,7 @@
     color: #D58B2E;
 }
 
-.wave img {
+.wave2 img {
     width: 100%;
 }
 
@@ -1146,3 +1146,29 @@ footer img {
 .SerFAQ p {
     margin: 0px 10px;
 }
+
+
+@media (max-width:1320px) {
+    
+
+
+.billingLine h1 {
+    width: 180px;
+}
+}
+
+@media (max-width:1240px) {
+  
+    
+    .billingLine h1 {
+        width: 160px;
+    }
+    }
+
+    @media (max-width:1065px) {
+        .billingLine h1 {
+            width: 240px;
+        }
+        
+        }
+    
