@@ -135,8 +135,9 @@ export default function Kyc(props) {
           setkycfilled(false)
           kycform(false)
           window.location.reload()
+          setKycForm(false)
         } catch (error) {
-          alert(`Data was now added, ${error.message}`);
+          console.log(`Data was now added, ${error.message}`);
         }
       },
       []

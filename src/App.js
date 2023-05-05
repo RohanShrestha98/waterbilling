@@ -396,11 +396,7 @@ const allbills = [
 const [bills,setBills]=useState([])
 const [message,setMessage]=useState(false)
 
-const notifications = [
-  {
 
-  }
-]
 
 useEffect(()=>{
   if(user2 && user2.lastUpdated){
@@ -477,7 +473,7 @@ else{
         <ToastContainer/>
       <div className="App">
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
           <Route path="/bills" element={<Bills user={user} message={message} DisplayTost={DisplayTost} click={click} bills={bills} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} user2={user2} time={user2.lastUpdated} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
