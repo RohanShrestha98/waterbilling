@@ -47,7 +47,7 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <div className={`sidebar `}>
+    <div className= "sidebar">
       <div className="logo2">
         <img src="img/logo.png" alt="" />
       </div>
@@ -65,7 +65,7 @@ export default function Sidebar() {
           </div>
         ))}
       </div>
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout} className='logout'>Logout</button>
     </div>
   );
 }

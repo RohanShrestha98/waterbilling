@@ -84,7 +84,7 @@ useEffect(()=>{
 },[props.bills,currentbills])
 
 
-
+const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
 
   return (
     <div className="KycUserNoti">
@@ -100,7 +100,7 @@ useEffect(()=>{
         <div  onClick={()=>setView('all')}><p className={view==='all'?"billstitlehover":"billstitlehoverp"} >All</p></div>
         
         <p className={view==='pending'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('pending')}>Pending</p>
-        <p className={view==='overdue'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('overdue')}>Overdue</p>
+        {/* <p className={view==='overdue'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('overdue')}>Overdue</p> */}
         <p className={view==='paid'?"billstitlehover":"billstitlehoverp"} onClick={()=>setView('paid')}>Paid</p>
         </div>
         {
@@ -108,7 +108,7 @@ useEffect(()=>{
             <div className='totalbills'>
                 {
                     props.bills.map((items)=>(
-                        <div key={items.id} onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
+                        <div key={items.id} onClick={()=>setCurrentBills(items.link)} className={currentbills===items.link?"alltotalbills alltotalbillshover":"alltotalbills"}>
                         <div className='billnameDate'>
                             <h2>{items.name}</h2>
                             <p>{items.date}</p>
@@ -133,7 +133,7 @@ useEffect(()=>{
                             
                 props.bills.slice(0, 1).map((items)=>
                 (
-                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className={currentbills===items.link?"alltotalbills alltotalbillshover":"alltotalbills"}>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>
@@ -159,7 +159,7 @@ useEffect(()=>{
                         !props.click ? <>
                         {
                 props.bills.map((items)=>(
-                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className={currentbills===items.link?"alltotalbills alltotalbillshover":"alltotalbills"}>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>
@@ -179,8 +179,8 @@ useEffect(()=>{
             </>
             :<div className='totalbills'>
             {
-                props.bills.map((items)=>(
-                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className='alltotalbills'>
+                billsToShow.map((items)=>(
+                    <div key={items.id}  onClick={()=>setCurrentBills(items.link)} className={currentbills===items.link?"alltotalbills alltotalbillshover":"alltotalbills"}>
                     <div className='billnameDate'>
                         <h2>{items.name}</h2>
                         <p>{items.date}</p>

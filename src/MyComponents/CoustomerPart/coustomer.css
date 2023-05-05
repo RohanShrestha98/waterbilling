@@ -221,6 +221,13 @@
     overflow: auto;
     padding: 12px 16px;
 }
+.sidebar button{
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 6px 0px;
+    color: rgb(42, 41, 41);
+}
 
 .logo2 {
     text-align: center;
@@ -453,6 +460,11 @@
 }
 .alltotalbills:hover{
     background: #e6edf5;
+}
+
+.alltotalbillshover{
+    background: #e6edf5;
+
 }
 
 .alltotalbills h1 {

@@ -31,28 +31,19 @@ export default function LeftSuperAdminDashboard() {
     const[active,setActive]=useState(false)
     const[active1,setActive1]=useState(false)
     const [conform,setConform]=useState(false)
-    const popup =()=>{
-      setConform((prev)=>!prev)
-  }
+  //   const popup =()=>{
+  //     setConform((prev)=>!prev)
+  // }
   const navigate = useNavigate()
-  const Logout=()=>{
-      toast.success("Logout SuccessFull")
-      navigate("/")
-  }
+  const logout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('user2');
+    navigate("/")
+    window.location.reload();
+  };
   return (
     <section className='leftDashboard'>
-      {
-        conform && 
-        <div className="conform">
-        <div className="conformImage"></div>
-        <h3>Are you sure you want to Logout</h3>
-        <div className="conformButton">
-          <p onClick={popup}>Cancel</p>
-          <p onClick={Logout}>Logout</p>
-        </div>
-      </div>
-      
-      }
+   
       <div className='logo'>
         <img src="img/logo.png" alt="" />
       </div>
@@ -95,7 +86,7 @@ export default function LeftSuperAdminDashboard() {
             ))
         }
       </div>
-      <h3 onClick={popup} className="navigate logout">
+      <h3 onClick={logout} className="navigate logout">
                     {/* <img src={items.icon} alt="" />   */}
                     <p>Log Out</p>
                     </h3>
