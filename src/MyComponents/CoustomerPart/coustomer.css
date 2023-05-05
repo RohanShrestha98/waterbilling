@@ -585,11 +585,16 @@
     right: 0;
 }
 
-.billdetails {
+.billdetails2 {
     background: white;
+    
 }
 
-.billdetails button {
+.billdetails1{
+    padding: 30px;
+}
+
+.billdetails2 button {
     width: 100%;
     margin-top: 10px;
     background: #0085FF;
@@ -598,10 +603,36 @@
     color: white;
     border: none;
     outline: none;
+    margin: 30px 10px;
 }
 
-.billdetails button:hover {
+.billdetails2 button:hover {
     background: #0263bd;
+}
+.download{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 20px;
+    display: flex;
+}
+
+.dot{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: black;
+    margin: 2px;
+}
+.downloadbutton {
+    padding: 8px 20px;
+    background: var(--primary);
+    margin: 10px;
+    border-radius: 8px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .profileInformation {

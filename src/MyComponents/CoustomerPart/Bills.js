@@ -82,6 +82,15 @@ useEffect(()=>{
     }
   
 },[props.bills,currentbills])
+const [download,setDownload]=useState(false)
+useEffect(() => {
+    const timeoutId = setTimeout(() => {
+        setDownload(false);
+    }, 3000);
+    return () => {
+        clearTimeout(timeoutId);
+      };
+})
 
 
 const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
@@ -207,9 +216,17 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
             <>
              {
                 filteredBills.map((items)=>(
-            <div  className="billdetails">
-                {/* <button onClick={downloadDivContent}>download Bill</button> */}
-                <div ref={divRef} >
+            <div  className="billdetails2">
+                <div className='download' onClick={()=>setDownload(true)}>
+                    <div className='dot'></div>
+                    <div className='dot'></div>
+                    <div className='dot'></div>
+                </div>
+                {
+                    download && <h4 className='downloadbutton' onClick={downloadDivContent}>Download Bill</h4>
+                }
+                
+                <div ref={divRef} className='billdetails1'>
 
                
             <div className="issueDatesLogo">

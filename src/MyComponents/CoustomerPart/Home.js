@@ -131,9 +131,9 @@ export default function Home2(props) {
             <>
              {
                 props.bills.slice(0, 1).map((items)=>(
-            <div  className="billdetails">
-                {/* <button onClick={downloadDivContent}>download Bill</button> */}
-                <div ref={divRef} >
+            <div  className="billdetails2">
+                
+                <div className='billdetails1'>
 
                
             <div className="issueDatesLogo">
