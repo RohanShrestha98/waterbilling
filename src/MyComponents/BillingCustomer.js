@@ -8,7 +8,9 @@ export default function BillingCustomer() {
     <div className='SuperAdminDashboard'>
       <LeftSuperAdminDashboard />
      <RightDashboard/>
-     hello
+     Sani ratna tamrakar
+     <p>asdfghjk</p>
+     <h1>asferedfc</h1>
     </div>
   )
 }
