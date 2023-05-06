@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import Kyc from './Kyc';
 import { toast } from 'react-toastify';
+import BottomNavigation from './BottomNavigation';
 
 export default function Bills(props,{bills}) {
     const [view,setView]=useState('all')
@@ -376,6 +377,7 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
           </div>
   </div>
   </div>
+  <BottomNavigation/>
   </div>
   )
 }

@@ -4,6 +4,7 @@ import Header from './Header'
 import Sidebar from './Sidebar';
 import "../style.css";
 import Kyc from './Kyc';
+import BottomNavigation from './BottomNavigation';
 
 export default function Analytics(props) {
   const [animate, setAnimate] = useState(false);
@@ -29,6 +30,7 @@ export default function Analytics(props) {
 
     </div>
   </div>
+  <BottomNavigation/>
   </div>
   )
 }

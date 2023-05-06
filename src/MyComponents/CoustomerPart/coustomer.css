@@ -221,7 +221,8 @@
     overflow: auto;
     padding: 12px 16px;
 }
-.sidebar button{
+
+.sidebar button {
     border: none;
     outline: none;
     margin-bottom: 10px;
@@ -382,12 +383,11 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 40px;
-    height: 90vh;
     overflow-y: auto;
     background: #fafafa;
 }
 
-.message{
+.message {
     margin-top: 100px;
     margin-bottom: 100px;
     text-align: center;
@@ -458,11 +458,12 @@
     border-radius: 8px;
     margin-bottom: 14px;
 }
-.alltotalbills:hover{
+
+.alltotalbills:hover {
     background: #e6edf5;
 }
 
-.alltotalbillshover{
+.alltotalbillshover {
     background: #e6edf5;
 
 }
@@ -503,6 +504,7 @@
 
 .PostsShow {
     width: 56%;
+    height: 90vh;
     margin-top: 40px;
 }
 
@@ -590,15 +592,17 @@
     top: 0;
     right: 0;
 }
-.coustomerbill3{
+
+.coustomerbill3 {
     display: none;
 }
+
 .billdetails2 {
     background: white;
-    
+
 }
 
-.billdetails1{
+.billdetails1 {
     padding: 30px;
 }
 
@@ -617,7 +621,8 @@
 .billdetails2 button:hover {
     background: #0263bd;
 }
-.download{
+
+.download {
     position: absolute;
     top: 0;
     right: 0;
@@ -625,13 +630,14 @@
     display: flex;
 }
 
-.dot{
+.dot {
     width: 4px;
     height: 4px;
     border-radius: 50%;
     background: black;
     margin: 2px;
 }
+
 .downloadbutton {
     padding: 8px 20px;
     background: var(--primary);
@@ -754,7 +760,7 @@
     color: #464649;
 }
 
-.containerwave{
+.containerwave {
     width: 300px;
     height: 300px;
     display: flex;
@@ -771,10 +777,10 @@
     background: #D9D9D9;
     border-radius: 50%;
     overflow: hidden;
-   
-  }
-  
-  .wave {
+
+}
+
+.wave {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -784,57 +790,166 @@
     background-size: cover;
     background-position: center;
     animation: fill-container 3s forwards;
-  }
-  
-  @keyframes fill-container {
+}
+
+.bottomNavigation {
+    display: none;
+}
+
+@keyframes fill-container {
     0% {
-      transform: translateY(100%);
+        transform: translateY(100%);
     }
+
     100% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
-  }
+}
 
 
-  @media (max-width:1320px) {
-    
+@media (max-width:1320px) {
 
 
-    .billdetails1{
+
+    .billdetails1 {
         padding: 20px;
     }
-    
+
+}
+
+@media (max-width:1125px) {
+    .billdetails1 {
+        padding: 10px;
     }
 
-    @media (max-width:1125px) {
-        .billdetails1{
-            padding: 10px;
-        }
-        
-        }
-        @media (max-width:1065px) {
-            .coustomerbill{
-                display: none;
-            }
-            .PostsShow {
-                width: 100%;
-            }
-            .sidebar {
-                width: 30%;
-            }
-            .allposts{
-                width: 100%;
-            }
-            .previousBill {
-                width: 100%;
-            }
-            .coustomerbill2 {
-                width: 100%;
-            }
-            .billdetails1{
-                padding: 30px;
-            }
-            .coustomerbill3{
-                display: block;
-            }
-            }
+}
+
+@media (max-width:1065px) {
+    .coustomerbill {
+        display: none;
+    }
+
+    .PostsShow {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 30%;
+    }
+
+    .allposts {
+        width: 100%;
+    }
+
+    .previousBill {
+        width: 100%;
+    }
+
+    .coustomerbill2 {
+        width: 100%;
+    }
+
+    .billdetails1 {
+        padding: 30px;
+    }
+
+    .coustomerbill3 {
+        display: block;
+    }
+}
+
+@media (max-width:785px) {
+    .billdetails1 {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width:700px) {
+    .billdetails1 {
+        padding: 30px 10px;
+    }
+    .notificationClick{
+        width: 90%;
+        margin-right: 5%;
+    }
+}
+
+@media (max-width:650px) {
+    .sidebar {
+        display: none;
+    }
+
+    .rightUserPart {
+        width: 100%;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .allbills {
+        padding: 0px 10px;
+    }
+
+    .bottomNavigation {
+        display: flex;
+        width: 100%;
+        background: white;
+        position: fixed;
+        bottom: 0;
+        justify-content: space-around;
+        box-shadow: 0px 0px 8px 0px gray;
+        padding: 4px 0px;
+    }
+
+    .navigationbottom {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 6px 20px;
+        border-radius: 8px;
+        color: var(--headingtextcolor);
+    }
+    .navigationbottom:hover{
+        background: #D5E4F7;
+    color: #2E78D5;
+    transition: 0.2s;
+    }
+    .navigationbottomselected{
+        background: #D5E4F7;
+        color: #2E78D5;
+        transition: 0.2s;
+    }
+
+    .navigationbottom h3 {
+        margin: 0px;
+        font-size: 14px;
+    }
+    
+.header {
+    padding: 0px 20px;
+}
+}
+@media (max-width:450px) {
+    .header h3{
+        display: none;
+    }
+    .previousBill{
+        padding: 20px;
+    }
+    .personalInformationone{
+        width: 100%;
+    }
+    .ImageNameEdit button{
+        display: none;
+    }
+}
+
+@media (max-width:400px) {
+   
+    .previousBill{
+        padding: 10px;
+    }
+}

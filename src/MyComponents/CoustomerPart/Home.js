@@ -8,6 +8,7 @@ import html2canvas from "html2canvas";
 import { db } from "../Firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
+import BottomNavigation from "./BottomNavigation";
 
 export default function Home2(props) {
   const divRef = useRef(null);
@@ -199,6 +200,7 @@ export default function Home2(props) {
           </div>
         </div>
       </div>
+      <BottomNavigation/>
     </div>
   );
 }

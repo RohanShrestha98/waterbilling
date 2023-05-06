@@ -1171,4 +1171,14 @@ footer img {
         }
         
         }
+        @media (max-width:785px) {
+            .billingLine h1 {
+                width: 200px;
+            }    
+        }
+        @media (max-width:675px) {
+            .billingLine h1 {
+                width: 180px;
+            }  
+        }
     

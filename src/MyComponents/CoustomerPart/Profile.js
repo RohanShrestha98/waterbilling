@@ -6,6 +6,7 @@ import "../style.css";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import Kyc from "./Kyc";
+import BottomNavigation from "./BottomNavigation";
 
 export default function Profile(props) {
   const divRef = useRef(null);
@@ -159,6 +160,7 @@ export default function Profile(props) {
           </div>
         </div>
       </div>
+      <BottomNavigation/>
     </div>
   );
 }
