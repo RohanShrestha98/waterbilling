@@ -6,7 +6,7 @@ import Kyc from "./Kyc";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { db } from "../Firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, getCountFromServer, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import { toast } from "react-toastify";
 import BottomNavigation from "./BottomNavigation";
 
@@ -85,6 +85,22 @@ export default function Home2(props) {
       unsub();
     };
   }, []);
+  const [collectionLength, setCollectionLength] = useState(0);
+
+  useEffect(() => {
+    const collRef = collection(db, 'user');
+    const getCountFromServer = async () => {
+      const snapshot = await getDocs(collRef);
+      const count = snapshot.size;
+      setCollectionLength(count);
+    };
+    getCountFromServer();
+  }, []);
+
+  console.log("collectionLength",collectionLength)
+
+ 
+
   return (
     <div className="KycUserNoti">
       <Kyc

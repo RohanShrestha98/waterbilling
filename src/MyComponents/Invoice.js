@@ -35,7 +35,7 @@ export default function Invoice() {
        <Link to="/invoicedetails" style={{textDecoration:"none"}}> <p>Dummy Invoice</p>
        </Link>
       </div>
-      <DataTable table={"normaluser"}/>
+      <DataTable table={"3"}/>
       </div>
     </div>
   )

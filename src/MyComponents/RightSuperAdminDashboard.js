@@ -1,9 +1,57 @@
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import { toast } from 'react-toastify'
 import DataTable from './DataTableUser'
 import "./style.css"
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from './Firebase';
 
 export default function RightSuperAdminDashboard(props) {
+
+  const [collectionLength, setCollectionLength] = useState(0);
+  const [prevlength, setprevlength] = useState(0);
+
+  useEffect(() => {
+    const collRef = collection(db, 'user');
+    const qa = query(collRef, where('provience', '==', '1'));
+    const qb = query(collRef, where('provience', '==', '2'));
+    const qc = query(collRef, where('provience', '==', '3'));
+    const qd = query(collRef, where('provience', '==', '4'));
+    const qe = query(collRef, where('provience', '==', '5'));
+    const qf = query(collRef, where('provience', '==', '6'));
+    const qg = query(collRef, where('provience', '==', '7'));
+    const q2 = query(
+      collection(db, "user"),
+      where(
+        "lastUpdated",
+        ">",
+        new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) // 1 month in milliseconds
+      )
+    );
+    const prevmonthlength = async () => {
+    const snapshot = await getDocs(q2);
+  const collectionLength = snapshot.size;
+  setprevlength(collectionLength)
+    }
+    const getCountFromServer = async () => {
+      const snapshot1 = await getDocs(qa);
+      const snapshot2 = await getDocs(qb);
+      const snapshot3 = await getDocs(qc);
+      const snapshot4 = await getDocs(qd);
+      const snapshot5 = await getDocs(qe);
+      const snapshot6 = await getDocs(qf);
+      const snapshot7 = await getDocs(qg);
+      const count1 = snapshot1.size;
+      const count2 = snapshot2.size;
+      const count3 = snapshot3.size;
+      const count4= snapshot4.size;
+      const count5= snapshot5.size;
+      const count6= snapshot6.size;
+      const count7= snapshot7.size;
+      setCollectionLength(count1+count2+count3+count4+count5+count6+count7);
+    };
+    prevmonthlength();
+    getCountFromServer();
+  }, []);
     const totalrevenue =[
         {
             id:1,
@@ -22,34 +70,13 @@ export default function RightSuperAdminDashboard(props) {
         {
             id:1,
             title:"Total Customers",
-            total:"1,390",
+            total:collectionLength,
             percentage :"60",
-            prev:"995"
+            prev:prevlength
         }
     ]
     const [search,setSearch] = useState("7")
 
-    const [searchprovience,setsearchprovience] = useState("provienceone")
-    const handleSearch =(e)=>{
-      e.preventDefault();
-      if(search==="1"){
-        setsearchprovience("provienceone")
-      }else if(search==="2"){
-        setsearchprovience("proviencetwo")
-      }else if(search==="3"){
-        setsearchprovience("proviencethree")
-      }else if(search==="4"){
-        setsearchprovience("proviencefour")
-      }else if(search==="5"){
-        setsearchprovience("proviencefive")
-      }else if(search==="6"){
-        setsearchprovience("proviencesix")
-      }else if(search==="7"){
-        setsearchprovience("provienceseven")
-      }else{
-        toast.error("Provience incorrect")
-      }
-    }
   return (
     <div className='rightDashboard'>
       <div className='admindashboardtitle'>
@@ -97,10 +124,8 @@ export default function RightSuperAdminDashboard(props) {
         !search ?  <div className="datatable" style={{height:"500px"}}></div> :
      
       
-        search === "1" ? <DataTable table="provienceone"/> : search=== "2" ? <DataTable table="proviencetwo"/>:search=== "3"? <DataTable table="proviencethree"/> : search=== "4" ? <DataTable table="proviencefour"/> : search=== "5" ?  <DataTable table="proviencefive"/> : search=== "6" ? <DataTable table="proviencesix"/> : search=== "7" ? <DataTable table="provienceseven"/> : console.log("Wrong provience")
-      
+        search === "1" ? <DataTable table="1"/> : search=== "2" ? <DataTable table="2"/>:search=== "3"? <DataTable table="3"/> : search=== "4" ? <DataTable table="4"/> : search=== "5" ?  <DataTable table="5"/> : search=== "6" ? <DataTable table="6"/> : search=== "7" ? <DataTable table="7"/> : console.log("Wrong provience")
     }
-     
     </div>
   )
 }

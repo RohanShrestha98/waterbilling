@@ -9,6 +9,8 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "./Firebase";
 import "./style.css"
@@ -16,25 +18,25 @@ import "./style.css"
 const DataTableUser = (props) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db,props.table ),
-      (snapShot) => {
-        let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setData(list);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  // useEffect(() => {
+  //   const unsub = onSnapshot(
+  //     collection(db,props.table ),
+  //     (snapShot) => {
+  //       let list = [];
+  //       snapShot.docs.forEach((doc) => {
+  //         list.push({ id: doc.id, ...doc.data() });
+  //       });
+  //       setData(list);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
 
-    return () => {
-      unsub();
-    };
-  }, []);
+  //   return () => {
+  //     unsub();
+  //   };
+  // }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -45,35 +47,53 @@ const DataTableUser = (props) => {
     }
   };
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div className="actions">
-              <img src="img/true.png" alt="" />
-            <p>Accept</p>
-            </div>
-            <div className="actions">
-              <img src="img/false.png" alt="" />
-            <p className="deny">Deny</p>
-            </div>
-            <p></p>
-          </div>
-        );
-      },
-    },
-  ];
+
+  useEffect(() => {
+    const collRef = collection(db, 'user');
+    const q = query(collRef, where('provience', '==', props.table));
+    const geteData = async () => {
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+      setData(data);
+    };
+    
+    geteData();
+  }, []);
+
+  
+  console.log("Data",data)
+
+  // const actionColumn = [
+  //   {
+  //     field: "action",
+  //     headerName: "Action",
+  //     width: 200,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className="cellAction">
+  //           <div className="actions">
+  //             <img src="img/true.png" alt="" />
+  //           <p>Accept</p>
+  //           </div>
+  //           <div className="actions">
+  //             <img src="img/false.png" alt="" />
+  //           <p className="deny">Deny</p>
+  //           </div>
+  //           <p></p>
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
   return (
     <div className="datatable" style={{height:"500px"}}>
       
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={normaluserColumns.concat(actionColumn)}
+        columns={normaluserColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

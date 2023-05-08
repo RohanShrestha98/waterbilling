@@ -18,6 +18,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { toast } from "react-toastify";
+import LeftSuperAdminDashboard from "./LeftSuberAdminDashboard";
 
 export default function AddPost(props) {
   const [file, setFile] = useState("");
@@ -94,6 +95,7 @@ export default function AddPost(props) {
           timeStamp: serverTimestamp(),
         });
         toast.success("Post Added Successfully")
+        window.location.reload()
       } catch (err) {
         console.log(err);
       }
@@ -101,11 +103,12 @@ export default function AddPost(props) {
  
 
   return (
-    <div className="displayAddAdmin">
-      <div className="addAdmin">
-        <div className="title">
-          <h1>Assign Admin</h1>
-          <img src="img/close.png" alt="" onClick={props.handleAdd} />
+    <div className=" displayPost">
+      <LeftSuperAdminDashboard className="leftpost"/>
+      <div  className="addpost">
+     <div className="insideAddPost">
+      <div className="title">
+          <h1>Add post </h1>
         </div>
         <form onSubmit={handleAdd} className="form">
          
@@ -120,7 +123,7 @@ export default function AddPost(props) {
               onChange={handleInput}
             />
           </div>
-          <div className="fileImg">
+          <div className="fileImg2">
             <img
               src={
                 file
@@ -130,7 +133,7 @@ export default function AddPost(props) {
               alt=""
             />
             <div className="formInput">
-              <label htmlFor="file">Upload image</label>
+              <label htmlFor="file">Upload post</label>
               <input
                 type="file"
                 id="file"
@@ -141,7 +144,8 @@ export default function AddPost(props) {
           </div>
           <button type="submit" onClick={handleClick}>Add post</button>
         </form>
+        </div>
       </div>
-    </div>
+      </div>
   );
 }

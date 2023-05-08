@@ -79,6 +79,23 @@ export const userColumns = [,
       headerName: "Phone",
       width: 150,
     },
+
+    {
+      field: "houseno",
+      headerName: "House No",
+      width: 150,
+    },
+
+    {
+      field: "citizenshipno",
+      headerName: "Citizenship No",
+      width: 150,
+    },
+
+    
+
+
+    
     // {
     //   field: "houseno",
     //   headerName: "House no",

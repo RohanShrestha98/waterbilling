@@ -113,7 +113,7 @@ export default function Kyc(props) {
     setData({ ...data, [id]: value });
   };
 
-  const collectionRef = collection(db, "user");
+  const collectionRef = collection(db,"user");
   const handleSubmit = async (e) => {
     e.preventDefault();
     onAuthStateChanged(
@@ -122,6 +122,8 @@ export default function Kyc(props) {
         try {
           await updateDoc(doc(collectionRef, props.id), {
             provience: data.provience,
+            username: props.username,
+            email: props.email,
             currentaddress: data.address,
             issuedate: data.issuedate,
             citizenshipno: data.citizenshipno,
@@ -133,9 +135,9 @@ export default function Kyc(props) {
 
           toast.success("KYC Form has submitted");
           setkycfilled(false)
-          kycform(false)
-          window.location.reload()
           setKycForm(false)
+          window.location.reload()
+          
         } catch (error) {
           console.log(`Data was now added, ${error.message}`);
         }

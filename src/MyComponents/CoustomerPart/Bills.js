@@ -106,7 +106,6 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
     <div className='allbills'>
       <div className='previousBill'>
         <h1 className='mybillsh1'>My Bills</h1>
-        <div>Rohan Shrestha {currentbills}</div>
         <div  className="coustomerbill2 coustomerbill3">
         {
              !props.kycfilled ? <>

@@ -1,32 +1,64 @@
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import { toast } from 'react-toastify'
 import DataTable from './DataTableUser'
 import "./style.css"
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from './Firebase';
 
 export default function RightAdminDashboard(props) {
+
+  const [collectionLength, setCollectionLength] = useState(0);
+  const [prevlength, setprevlength] = useState(0);
+
+  useEffect(() => {
+    const collRef = collection(db, 'user');
+    const q = query(collRef, where('provience', '==', '3'));
+    const q2 = query(
+      collection(db, "user"),
+      where(
+        "lastUpdated",
+        ">",
+        new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) // 1 month in milliseconds
+      )
+    );
+    const prevmonthlength = async () => {
+    const snapshot = await getDocs(q2);
+  const collectionLength = snapshot.size;
+  setprevlength(collectionLength)
+    }
+    const getCountFromServer = async () => {
+      const snapshot = await getDocs(q);
+      const count = snapshot.size;
+      setCollectionLength(count);
+    };
+    prevmonthlength();
+    getCountFromServer();
+  }, []);
     const totalrevenue =[
         {
             id:1,
             title:"Total Revenue (in Rs)",
-            total:"12,079",
+            total:"2,079",
             percentage :"17",
-            prev:"10,590"
+            prev:"1,590"
         },
         {
             id:1,
             title:"No. of Invoices",
-            total:"844",
-            percentage :"5",
-            prev:"750"
+            total:collectionLength-1,
+            percentage :"50",
+            prev:prevlength
         },
         {
             id:1,
             title:"Total Customers",
-            total:"1,390",
+            total:collectionLength,
             percentage :"60",
-            prev:"995"
+            prev:prevlength
         }
     ]
+
+ 
   return (
     <div className='rightDashboard'>
       <div className='admindashboardtitle'>
@@ -64,7 +96,7 @@ export default function RightAdminDashboard(props) {
         }
         
       </div> 
-      <DataTable table="normaluser"/> 
+      <DataTable table="3"/> 
       
      
     </div>

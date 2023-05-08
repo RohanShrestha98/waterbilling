@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function LeftDashboard() {
@@ -28,9 +28,8 @@ export default function LeftDashboard() {
             link:"/customers"
         }
     ]
-    const[active,setActive]=useState(false)
-    const[active1,setActive1]=useState(false)
-    const[active2,setActive2]=useState(false)
+
+    const location = useLocation()
     
     const navigate = useNavigate()
     const logout = () => {
@@ -50,7 +49,7 @@ export default function LeftDashboard() {
         {
             general.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className={active?"navigate navigateactive":"navigate"} onClick={(e)=>setActive(true)}>
+                    <Link to={items.link} className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -63,7 +62,7 @@ export default function LeftDashboard() {
         {
             billmanagement.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className={active1?"navigate navigateactive":"navigate"} onClick={(e)=>setActive1(true)}>
+                    <Link to={items.link}  className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -76,7 +75,7 @@ export default function LeftDashboard() {
         {
             usermanagement.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className={active2?"navigate navigateactive":"navigate"} onClick={(e)=>setActive2(true)}>
+                    <Link to={items.link}  className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>

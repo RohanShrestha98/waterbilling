@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function LeftSuperAdminDashboard() {
@@ -28,12 +28,15 @@ export default function LeftSuperAdminDashboard() {
             link:"/billingadmin"
         }
     ]
-    const[active,setActive]=useState(false)
-    const[active1,setActive1]=useState(false)
-    const [conform,setConform]=useState(false)
-  //   const popup =()=>{
-  //     setConform((prev)=>!prev)
-  // }
+
+    const post = [
+      {
+          id:"1",
+          icon:"img/usertag.png",
+          title:"Add post",
+          link:"/addpost"
+      }
+  ]
   const navigate = useNavigate()
   const logout = () => {
     localStorage.removeItem('user');
@@ -41,6 +44,7 @@ export default function LeftSuperAdminDashboard() {
     navigate("/")
     window.location.reload();
   };
+  const location = useLocation()
   return (
     <section className='leftDashboard'>
    
@@ -52,7 +56,7 @@ export default function LeftSuperAdminDashboard() {
         {
             general.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className={active?"navigate navigateactive":"navigate"} onClick={(e)=>setActive(true)}>
+                    <Link to={items.link} className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
@@ -78,7 +82,22 @@ export default function LeftSuperAdminDashboard() {
         {
             usermanagement.map((items)=>(
                 <div key={items.id}>
-                    <Link to={items.link} className={active1?"navigate navigateactive":"navigate"} onClick={(e)=>setActive1(true)}>
+                    <Link to={items.link}className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
+                    <img src={items.icon} alt="" /> 
+                    <p>{items.title}</p>
+                    </Link>
+                </div>
+            ))
+        }
+      </div>
+
+      <div className='navigations'>
+        <p>Add post</p>
+        {
+            post.map((items)=>(
+                <div key={items.id}>
+                    <Link to={items.link}
+                     className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
                     <p>{items.title}</p>
                     </Link>
