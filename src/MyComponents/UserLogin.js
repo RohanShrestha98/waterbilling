@@ -12,7 +12,7 @@ export default function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navitage = useNavigate();
+  const navigate = useNavigate();
 
   const { dispatch } = useContext(AuthContext);
 
@@ -24,46 +24,55 @@ export default function UserLogin() {
         // Signed in
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        toast.success("Login Successfull")
-        navitage("/");
+        toast.success("Login Successful");
+        navigate("/");
         window.location.reload();
       })
       .catch((error) => {
         setError(true);
       });
   };
-  const [eye,setEye]= useState(true)
+  
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
-    <SignupNavigation/>
-    <form className="PhoneNumberLogin" onSubmit={handleLogin}>
-      <div className="logo">
-        {" "}
-        <img src="img/logo.png" alt="" />
-      </div>
-      <h2>User Login</h2>
-      <p>Email.</p>
-      <input
-        type="email"
-        name="email"
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-      />
-      <p>Password.</p>
-      <div className="password">
+      <SignupNavigation />
+      <form className="PhoneNumberLogin" onSubmit={handleLogin}>
+        <div className="logo">
+          <img src="img/logo.png" alt="" />
+        </div>
+        <h2>User Login</h2>
+        <p>Email</p>
         <input
-          type={eye ? "password" : "text"}
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
+          type="email"
+          name="email"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
         />
-        <i class="fa-solid fa-eye" onClick={(e) => setEye((prev) => !prev)}></i>
-      </div>
-      {error && <span>Wrong email or password!</span>}
-      <button>Login</button>
-      <Link to="/createuseraccount" className="alreadyhaveacc"><p>Dont have account</p> </Link>
-      
-    </form>
+        <p>Password</p>
+        <div className="password">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+          <i
+            className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+            onClick={() => setShowPassword((prev) => !prev)}
+          ></i>
+        </div>
+        {error && (
+          <Link to="/forgotpassword" className="forgot-password">
+            Forgot Password
+          </Link>
+        )}
+        <button>Login</button>
+        <Link to="/createuseraccount" className="alreadyhaveacc">
+          <p>Don't have an account?</p>
+        </Link>
+      </form>
     </>
   );
 }
