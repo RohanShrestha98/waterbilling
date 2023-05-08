@@ -1,0 +1,63 @@
+.help-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #c19393;
+  }
+  
+  .help-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    background-color: blue;
+    border: none;
+  }
+  
+  .card-header:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .card-header button {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  .card-body p {
+    margin-bottom: 0;
+  }
+  
+  .card-body a {
+    color: #007bff;
+  }
+  
+  .card-body a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 767px) {
+    .help-section {
+      padding: 15px;
+    }
+  
+    .help-section h2 {
+      font-size: 20px;
+    }
+  
+    .card-header button {
+      font-size: 16px;
+    }
+  
+    .card-body {
+      padding: 15px;
+    }
+  }
+  
