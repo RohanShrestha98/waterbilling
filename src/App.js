@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import PhoneSignup from "./MyComponents/PhoneSignup";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import UserDetails from "./MyComponents/UserDetails";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
@@ -471,6 +472,11 @@ else{
   return (
     <Router>
         <ToastContainer/>
+        <div className="App">
+            <TawkMessengerReact
+                propertyId="property_id"
+                widgetId="default"/>
+        </div>
       <div className="App">
         <Routes>
           <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
