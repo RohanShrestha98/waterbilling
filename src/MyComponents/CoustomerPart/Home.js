@@ -119,6 +119,7 @@ export default function Home2(props) {
             data={props.data}
             username={props.username}
             email={props.email}
+            shownotification={props.shownotification}
           />
           <div className="allbills">
             <div className="PostsShow">

@@ -27,6 +27,7 @@ import Revenue from "./MyComponents/Revenue";
 import DownloadPdf from "./MyComponents/DownloadPdf";
 import InvoiceDetails from "./MyComponents/InvoiceDetails";
 import VerifyOtp from "./MyComponents/VerifyOtp";
+import { useRef } from 'react';
 import Userpage from "./MyComponents/Userpage";
 import Crud from "./MyComponents/Crud";
 import CrudForm from "./MyComponents/CrudForm";
@@ -397,7 +398,66 @@ const allbills = [
 const [bills,setBills]=useState([])
 const [message,setMessage]=useState(false)
 
+const notifications = [
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"May 2023",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"April 2023",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"March 2023",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Fwb 2023",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Jan 2023",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Dec 2022",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Nov 2022",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Oct 2022",
+    img:"img/ab.png"
+  },
+  {
+    id:"1",
+    message:`Dear ${user2.username}, you have a new bill generated. Please review and pay the bill before the due date to avoid late fees.`,
+    date:"Setp 2022",
+    img:"img/ab.png"
+  }
+]
 
+const [shownotification,setShowNotification]=useState([])
+
+const [lengthNotification,setLengthNotification]=useState(null)
 
 useEffect(()=>{
   if(user2 && user2.lastUpdated){
@@ -409,50 +469,80 @@ const monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
 // const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 ));
 if(monthsDiff===1){
   const slicedData = allbills.slice(0, 1);
+  const sliceNotification = notifications.slice(0, 1);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(1)
   setMessage(false)
 }else if(monthsDiff===2){
   const slicedData = allbills.slice(0, 2);
+  const sliceNotification = notifications.slice(0, 2);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(2)
   setMessage(false)
 }else if(monthsDiff===3){
   const slicedData = allbills.slice(0, 3);
+  const sliceNotification = notifications.slice(0, 3);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(3)
   setMessage(false)
 }
 else if(monthsDiff===4){
   const slicedData = allbills.slice(0, 4);
+  const sliceNotification = notifications.slice(0, 4);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(4)
   setMessage(false)
 }
 else if(monthsDiff===5){
   const slicedData = allbills.slice(0, 5);
+  const sliceNotification = notifications.slice(0, 5);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(5)
   setMessage(true)
 }
 else if(monthsDiff===6){
   const slicedData = allbills.slice(0, 6);
+  const sliceNotification = notifications.slice(0, 6);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(6)
   setMessage(true)
 }
 else if(monthsDiff===7){
   const slicedData = allbills.slice(0, 7);
+  const sliceNotification = notifications.slice(0, 7);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(7)
   setMessage(true)
 }
 else if(monthsDiff===8){
   const slicedData = allbills.slice(0, 8);
+  const sliceNotification = notifications.slice(0, 8);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(8)
   setMessage(true)
 }
 else if(monthsDiff===9){
   const slicedData = allbills.slice(0, 9);
+  const sliceNotification = notifications.slice(0, 9);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(9)
   setMessage(true)
 }
 else{
   const slicedData = allbills.slice(0, 0);
+  const sliceNotification = notifications.slice(0, 0);
   setBills(slicedData)
+  setShowNotification(sliceNotification)
+  setLengthNotification(null)
   setMessage(true)
 }
 }
@@ -466,25 +556,24 @@ else{
 // };
 },[user2,user2.lastUpdated])
 
+const tawkMessengerRef = useRef();
 
 
 
   return (
     <Router>
         <ToastContainer/>
-        <div className="App">
-            <TawkMessengerReact
-                propertyId="property_id"
-                widgetId="default"/>
-        </div>
       <div className="App">
+      <TawkMessengerReact
+                propertyId="6459b4b36a9aad4bc5799fea"
+                widgetId="1gvv6jpi2"/>
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Home2 user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Home2 shownotification={shownotification} user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
-          <Route path="/bills" element={<Bills user={user} message={message} DisplayTost={DisplayTost} click={click} bills={bills} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} user2={user2} time={user2.lastUpdated} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
-          <Route path="/profile" element={<Profile user={user}  data={data} houseno={user2.houseno} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} id={user2.id} citizenshipback={user2.citizenshipback} phone={user2.phone} citizenshipno={user2.citizenshipno}  currentUser={currentUser}/>}/>
-          <Route path="/analytics" element={<Analytics user={user} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/bills" element={<Bills user={user} shownotification={shownotification} message={message} DisplayTost={DisplayTost} click={click} bills={bills} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} user2={user2} time={user2.lastUpdated} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/profile" element={<Profile user={user} shownotification={shownotification}  data={data} houseno={user2.houseno} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} id={user2.id} citizenshipback={user2.citizenshipback} citizenshipfront={user2.citizenshipfront} phone={user2.phone} citizenshipno={user2.citizenshipno}  currentUser={currentUser}/>}/>
+          <Route path="/analytics" element={<Analytics user={user} shownotification={shownotification} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/addpost" element={<AddPost/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>

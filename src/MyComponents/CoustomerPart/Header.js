@@ -2,6 +2,7 @@ import React from 'react'
 import "./coustomer.css"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom/dist';
 
 
 export default function Header(props) {
@@ -23,7 +24,23 @@ const handleNotificationClick = (prev) => {
         {
           notification && 
           <div className='notificationClick'>
-
+            <div className='notificationheader'>
+              <h1>Notifications</h1>
+            </div>
+            
+              {
+                props.shownotification.map((items)=>(
+                  <div className='notificationbillsdetail'>
+              <img src={items.img} alt="" />
+                  <Link to="/bills" style={{textDecoration:"none"}} key={items.id}>
+                  <h2>{items.message}</h2>
+                  <h3>{items.date}</h3>
+                </Link>
+                </div>
+                ))
+              }
+             
+            
           </div>
         }
         <div className='Email'>

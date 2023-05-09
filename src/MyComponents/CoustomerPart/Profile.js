@@ -80,11 +80,6 @@ export default function Profile(props) {
       title: "Email",
       info: props.email,
     },
-    {
-      id: "1",
-      title: "CitizenShip No",
-      info: props.citizenshipno,
-    },
   ];
 
   const addressInfo = [
@@ -104,6 +99,30 @@ export default function Profile(props) {
       info: props.houseno,
     },
   ];
+
+  const citizenShipinfo = [
+   
+    {
+      id: "1",
+      title: "CitizenShip No",
+      info: props.citizenshipno,
+    },
+    {
+      id: "1",
+      title: " ",
+      info: "",
+    },
+    {
+      id: "1",
+      title: "CitizenShip Front",
+      img: props.citizenshipfront,
+    },
+    {
+      id: "1",
+      title: "CitizenShip Back",
+      img: props.citizenshipback,
+    }
+  ];
   return (
     <div className="KycUserNoti">
       <Kyc
@@ -121,6 +140,7 @@ export default function Profile(props) {
             data={props.data}
             username={props.username}
             email={props.email}
+            shownotification={props.shownotification}
           />
           <div className="profileInformation">
             <h1>My Profile</h1>
@@ -151,6 +171,18 @@ export default function Profile(props) {
                       <div key={items.id} className="personalInformationone">
                         <p>{items.title}</p>
                         <h2>{items.info}</h2>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="personalInformation">
+                  <h2>CitizenShip Information </h2>
+                  <div className="personalinfo">
+                    {citizenShipinfo.map((items) => (
+                      <div key={items.id} className="personalInformationone">
+                        <p>{items.title}</p>
+                        <h2>{items.info}</h2>
+                        <img src={items.img} alt="" />
                       </div>
                     ))}
                   </div>

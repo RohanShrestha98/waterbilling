@@ -18,7 +18,7 @@ export default function Analytics(props) {
     <div className="users">
     <Sidebar />
     <div className='rightUserPart'>
-     <Header name={"Anylatics"} user={props.user} data={props.data} username={props.username} email={props.email}/>
+     <Header name={"Anylatics"} shownotification={props.shownotification} user={props.user} data={props.data} username={props.username} email={props.email}/>
      <div className='container'>
       <div className='containerwave'>
      <div class="wave-container">

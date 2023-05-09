@@ -377,6 +377,69 @@
     border: 1px solid #CFD0D3;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
+
+}
+
+
+.notificationheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    border-bottom: 1px solid #CFD0D3;
+}
+
+.notificationheader h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0px;
+    text-align: center;
+    color: #464649;
+}
+
+.notificationheader p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0px;
+    text-align: center;
+    color: #2E78D5;
+}
+
+.notificationbillsdetail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid #CFD0D3;
+}
+.notificationbillsdetail:hover{
+    transition: 0.3s;
+    background: #F6F9FD;
+}
+
+.notificationbillsdetail h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0px;
+    margin-left: 10px;
+    color: #464649;
+}
+
+.notificationbillsdetail h3 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0px;
+    margin-left: 10px;
+    letter-spacing: 0.25px;
+    color: #8C8D92;
 }
 
 .allbills {
@@ -741,6 +804,11 @@
     margin: 30px 0px 0px 0px;
 }
 
+.personalInformationone img {
+    width: 200px;
+    margin-top: 10px;
+}
+
 .personalInformationone p {
     font-style: normal;
     font-weight: 400;
@@ -868,7 +936,8 @@
     .billdetails1 {
         padding: 30px 10px;
     }
-    .notificationClick{
+
+    .notificationClick {
         width: 90%;
         margin-right: 5%;
     }
@@ -912,12 +981,14 @@
         border-radius: 8px;
         color: var(--headingtextcolor);
     }
-    .navigationbottom:hover{
+
+    .navigationbottom:hover {
         background: #D5E4F7;
-    color: #2E78D5;
-    transition: 0.2s;
+        color: #2E78D5;
+        transition: 0.2s;
     }
-    .navigationbottomselected{
+
+    .navigationbottomselected {
         background: #D5E4F7;
         color: #2E78D5;
         transition: 0.2s;
@@ -927,29 +998,33 @@
         margin: 0px;
         font-size: 14px;
     }
-    
-.header {
-    padding: 0px 20px;
+
+    .header {
+        padding: 0px 20px;
+    }
 }
-}
+
 @media (max-width:450px) {
-    .header h3{
+    .header h3 {
         display: none;
     }
-    .previousBill{
+
+    .previousBill {
         padding: 20px;
     }
-    .personalInformationone{
+
+    .personalInformationone {
         width: 100%;
     }
-    .ImageNameEdit button{
+
+    .ImageNameEdit button {
         display: none;
     }
 }
 
 @media (max-width:400px) {
-   
-    .previousBill{
+
+    .previousBill {
         padding: 10px;
     }
 }
