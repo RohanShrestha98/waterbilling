@@ -55,7 +55,7 @@ export default function Analytics(props) {
                   
                   <div class="wave"></div>
                 </div>
-                <p>Prev. month: 1,763 litres</p>
+                <p>This. month: 1,763 litres</p>
               </div>
               <div className="waterpeak">
                 <div className="waterusage">

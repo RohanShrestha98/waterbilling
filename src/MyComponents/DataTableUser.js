@@ -65,35 +65,35 @@ const DataTableUser = (props) => {
   
   console.log("Data",data)
 
-  // const actionColumn = [
-  //   {
-  //     field: "action",
-  //     headerName: "Action",
-  //     width: 200,
-  //     renderCell: (params) => {
-  //       return (
-  //         <div className="cellAction">
-  //           <div className="actions">
-  //             <img src="img/true.png" alt="" />
-  //           <p>Accept</p>
-  //           </div>
-  //           <div className="actions">
-  //             <img src="img/false.png" alt="" />
-  //           <p className="deny">Deny</p>
-  //           </div>
-  //           <p></p>
-  //         </div>
-  //       );
-  //     },
-  //   },
-  // ];
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div className="actions">
+              <img src="img/true.png" alt="" />
+            <p>Accept</p>
+            </div>
+            <div className="actions">
+              <img src="img/false.png" alt="" />
+            <p className="deny">Deny</p>
+            </div>
+            <p></p>
+          </div>
+        );
+      },
+    },
+  ];
   return (
     <div className="datatable" style={{height:"500px"}}>
       
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={normaluserColumns}
+        columns={normaluserColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
