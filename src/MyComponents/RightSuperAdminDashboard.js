@@ -56,16 +56,16 @@ export default function RightSuperAdminDashboard(props) {
         {
             id:1,
             title:"Total Revenue (in Rs)",
-            total:"12,079",
+            total:"2,079",
             percentage :"17",
-            prev:"10,590"
+            prev:"1,590"
         },
         {
             id:1,
             title:"No. of Invoices",
-            total:"844",
-            percentage :"5",
-            prev:"750"
+            total:collectionLength,
+            percentage :"50",
+            prev:prevlength
         },
         {
             id:1,

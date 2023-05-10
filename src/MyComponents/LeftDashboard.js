@@ -20,14 +20,6 @@ export default function LeftDashboard() {
             link:"/invoice"
         }
     ]
-    const usermanagement = [
-        {
-            id:"1",
-            icon:"img/profile2user.png",
-            title:"Customers",
-            link:"/customers"
-        }
-    ]
 
     const location = useLocation()
     
@@ -61,19 +53,6 @@ export default function LeftDashboard() {
         <p>Bill Managements</p>
         {
             billmanagement.map((items)=>(
-                <div key={items.id}>
-                    <Link to={items.link}  className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
-                    <img src={items.icon} alt="" /> 
-                    <p>{items.title}</p>
-                    </Link>
-                </div>
-            ))
-        }
-      </div>
-      <div className='navigations'>
-        <p>User Managements</p>
-        {
-            usermanagement.map((items)=>(
                 <div key={items.id}>
                     <Link to={items.link}  className= {`navigate ${location.pathname === items.link ? 'navigateactive' : ''} `} >
                     <img src={items.icon} alt="" /> 
