@@ -83,7 +83,7 @@ export default function RightAdminDashboard(props) {
         {
             totalrevenue.map((items)=>(
           <div className='totalRevenue' key={items.id}>
-            <div className='totalRevenuePrice'> <p>{items.title}</p><img src="img/arrowside.png" alt="" /></div>
+            <div className='totalRevenuePrice'> <p>{items.title}</p></div>
            
             <div className='totalRevenuePrice'>
             <h1>{items.total}</h1>
