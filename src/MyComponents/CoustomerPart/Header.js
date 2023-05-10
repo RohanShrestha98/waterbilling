@@ -20,6 +20,7 @@ const handleNotificationClick = (prev) => {
       <h2>{props.name}</h2>
       <h3>{month} {day}, {year}</h3>
       <div className='notificationEmail'>
+        {/* <div>{props.lengthNotification}</div> */}
         <img className='notification'onClick={() => handleNotificationClick(notification)} src="img/Notification.png" alt="" />
         {
           notification && 
@@ -27,7 +28,6 @@ const handleNotificationClick = (prev) => {
             <div className='notificationheader'>
               <h1>Notifications</h1>
             </div>
-            
               {
                 props.shownotification.map((items)=>(
                   <div className='notificationbillsdetail'>

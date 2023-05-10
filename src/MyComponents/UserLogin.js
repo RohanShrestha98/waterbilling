@@ -35,7 +35,6 @@ export default function UserLogin() {
   const [eye,setEye]= useState(true)
   return (
     <>
-    <SignupNavigation/>
     <form className="PhoneNumberLogin" onSubmit={handleLogin}>
       <div className="logo">
         {" "}

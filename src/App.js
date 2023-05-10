@@ -456,8 +456,10 @@ const notifications = [
 ]
 
 const [shownotification,setShowNotification]=useState([])
+const [analytics,setAnalytics]=useState(false)
 
 const [lengthNotification,setLengthNotification]=useState(null)
+
 
 useEffect(()=>{
   if(user2 && user2.lastUpdated){
@@ -466,6 +468,7 @@ useEffect(()=>{
 const currentDate = new Date();
 const timeDiff = currentDate.getTime() - date2.getTime();
 const monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+setLengthNotification(monthsDiff)
 // const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 ));
 if(monthsDiff===1){
   const slicedData = allbills.slice(0, 1);
@@ -473,6 +476,7 @@ if(monthsDiff===1){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(1)
+  setAnalytics(true)
   setMessage(false)
 }else if(monthsDiff===2){
   const slicedData = allbills.slice(0, 2);
@@ -480,6 +484,7 @@ if(monthsDiff===1){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(2)
+  setAnalytics(true)
   setMessage(false)
 }else if(monthsDiff===3){
   const slicedData = allbills.slice(0, 3);
@@ -487,6 +492,7 @@ if(monthsDiff===1){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(3)
+  setAnalytics(true)
   setMessage(false)
 }
 else if(monthsDiff===4){
@@ -495,6 +501,7 @@ else if(monthsDiff===4){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(4)
+  setAnalytics(true)
   setMessage(false)
 }
 else if(monthsDiff===5){
@@ -503,6 +510,7 @@ else if(monthsDiff===5){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(5)
+  setAnalytics(true)
   setMessage(true)
 }
 else if(monthsDiff===6){
@@ -511,6 +519,7 @@ else if(monthsDiff===6){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(6)
+  setAnalytics(true)
   setMessage(true)
 }
 else if(monthsDiff===7){
@@ -519,6 +528,7 @@ else if(monthsDiff===7){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(7)
+  setAnalytics(true)
   setMessage(true)
 }
 else if(monthsDiff===8){
@@ -527,6 +537,7 @@ else if(monthsDiff===8){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(8)
+  setAnalytics(true)
   setMessage(true)
 }
 else if(monthsDiff===9){
@@ -535,6 +546,7 @@ else if(monthsDiff===9){
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(9)
+  setAnalytics(true)
   setMessage(true)
 }
 else{
@@ -543,6 +555,7 @@ else{
   setBills(slicedData)
   setShowNotification(sliceNotification)
   setLengthNotification(null)
+  setAnalytics(false)
   setMessage(true)
 }
 }
@@ -568,12 +581,12 @@ const tawkMessengerRef = useRef();
                 propertyId="6459b4b36a9aad4bc5799fea"
                 widgetId="1gvv6jpi2"/>
         <Routes>
-          <Route path="/" element={!currentUser ? <Home/>:<Home2 shownotification={shownotification} user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/" element={!currentUser ? <Home/>:<Home2 lengthNotification={lengthNotification} shownotification={shownotification} user={user} click={click} DisplayTost={DisplayTost} kycfilled={kycfilled} data={data} address={user2.currentaddress} bills={bills} provience={user2.provience} username={user2.username} message={message} id={user2.id} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           {/* <Route path="/" element={!currentUser ? <Home/>:<Userpage user={user} data={data} currentUser={currentUser}/>}/> */}
           <Route path="/downloadpdf" element={<DownloadPdf/>}/>
-          <Route path="/bills" element={<Bills user={user} shownotification={shownotification} message={message} DisplayTost={DisplayTost} click={click} bills={bills} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} user2={user2} time={user2.lastUpdated} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
-          <Route path="/profile" element={<Profile user={user} shownotification={shownotification}  data={data} houseno={user2.houseno} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} id={user2.id} citizenshipback={user2.citizenshipback} citizenshipfront={user2.citizenshipfront} phone={user2.phone} citizenshipno={user2.citizenshipno}  currentUser={currentUser}/>}/>
-          <Route path="/analytics" element={<Analytics user={user} shownotification={shownotification} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/bills" element={<Bills user={user} lengthNotification={lengthNotification} shownotification={shownotification} message={message} DisplayTost={DisplayTost} click={click} bills={bills} data={data} id={user2.id} address={user2.currentaddress} provience={user2.provience} username={user2.username} user2={user2} time={user2.lastUpdated} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
+          <Route path="/profile" element={<Profile lengthNotification={lengthNotification} user={user} shownotification={shownotification}  data={data} houseno={user2.houseno} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} id={user2.id} citizenshipback={user2.citizenshipback} citizenshipfront={user2.citizenshipfront} phone={user2.phone} citizenshipno={user2.citizenshipno}  currentUser={currentUser}/>}/>
+          <Route path="/analytics" element={<Analytics lengthNotification={lengthNotification} analytics={analytics} user={user} message={message}  shownotification={shownotification} data={data} address={user2.currentaddress} provience={user2.provience} username={user2.username} email={user2.email} citizenshipback={user2.citizenshipback} currentUser={currentUser}/>}/>
           <Route path="/invoicedetails" element={<InvoiceDetails/>}/>
           <Route path="/addpost" element={<AddPost/>}/>
           <Route path="/adminlogin" element={<LoginEmail/>}/>

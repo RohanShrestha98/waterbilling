@@ -119,6 +119,7 @@ export default function Home2(props) {
             data={props.data}
             username={props.username}
             email={props.email}
+            lengthNotification={props.lengthNotification}
             shownotification={props.shownotification}
           />
           <div className="allbills">

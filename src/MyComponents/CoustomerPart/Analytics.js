@@ -30,7 +30,14 @@ export default function Analytics(props) {
             data={props.data}
             username={props.username}
             email={props.email}
+            lengthNotification={props.lengthNotification}
           />
+
+{
+             !props.kycfilled ? <>
+{
+            props.analytics ?
+            <>
           <div className="analytics">
             <div className="analyticsLeft">
               <h1>Analytics</h1>
@@ -70,6 +77,17 @@ export default function Analytics(props) {
               </div>
             </div>
           </div>
+          </>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No thing to show</p>
+          </div>
+          
+        }
+             </>:
+          <div className='billdetails nobilldetails'>
+             <p className='message'>No thing to show</p>
+          </div>
+        }
         </div>
       </div>
       <BottomNavigation />

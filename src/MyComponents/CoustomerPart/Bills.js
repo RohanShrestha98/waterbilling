@@ -102,7 +102,7 @@ const billsToShow = !props.click ? props.bills.slice(1) : props.bills;
     <div className='users'>
     <Sidebar/>
     <div className='rightUserPart'>
-    <Header name={"Bills"} user={props.user} shownotification={props.shownotification} data={props.data} username={props.username} email={props.email}/>
+    <Header name={"Bills"} user={props.user} shownotification={props.shownotification} data={props.data} username={props.username} email={props.email} lengthNotification={props.lengthNotification}/>
     <div className='allbills'>
       <div className='previousBill'>
         <h1 className='mybillsh1'>My Bills</h1>
