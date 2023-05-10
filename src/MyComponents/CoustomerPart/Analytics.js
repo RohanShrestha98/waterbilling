@@ -39,6 +39,7 @@ export default function Analytics(props) {
                 <p>This Month</p>
                 <img src="img/arrowdown.png" alt="" />
               </div>
+             
             </div>
             <div className="container">
               <div className="containerwave">
@@ -46,6 +47,25 @@ export default function Analytics(props) {
                 <div class="wave-container">
                   
                   <div class="wave"></div>
+                </div>
+                <p>Prev. month: 1,763 litres</p>
+              </div>
+              <div className="waterpeak">
+                <div className="waterusage">
+                  <h1>AVG. WATER USAGE</h1>
+                  <p>per day</p>
+                  <div className="usages">
+                    <h2>70 ltrs</h2>
+                    <img src="img/waterusage.png" alt="" />
+                  </div>
+                </div>
+                <div className="waterusage">
+                <h1>PEAK DAY</h1>
+                  <p>per week</p>
+                  <div className="usages">
+                    <h2>Sun</h2>
+                    <img src="img/calendar1.png" alt="" />
+                  </div>
                 </div>
               </div>
             </div>
